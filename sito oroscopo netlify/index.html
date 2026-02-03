@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oroscopo Q&A Divertente</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #f7f7f7; 
+            color: #222; 
+            text-align: center; 
+            padding: 20px; 
+            margin: 0; 
+        }
+        h1 { color: #ff4c81; margin-bottom: 25px; }
+        form { 
+            max-width: 420px; 
+            margin: auto; 
+            background: white; 
+            padding: 25px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+        label { display: block; margin: 12px 0 6px; font-weight: bold; color: #444; }
+        select, button { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 8px 0; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 17px; 
+            box-sizing: border-box; 
+        }
+        button { 
+            background: #ff69b4; 
+            color: white; 
+            cursor: pointer; 
+            border: none; 
+            font-weight: bold; 
+            transition: 0.3s; 
+        }
+        button:hover { background: #ff1493; }
+        button.cartomante { background: #800080; }
+        button.cartomante:hover { background: #660066; }
+        #risposta { 
+            margin-top: 30px; 
+            font-size: 19px; 
+            line-height: 1.5; 
+            font-style: italic; 
+            color: #4b0082; 
+            min-height: 140px; 
+            padding: 0 10px; 
+        }
+        #loading { 
+            display: none; 
+            margin: 30px 0; 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #ff69b4; 
+            text-align: center;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff69b4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .support-text {
+            margin: 30px 0 10px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        .support-link {
+            color: #0070ba;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .support-link:hover {
+            text-decoration: underline;
+        }
+        .share-links {
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        .share-links a {
+            margin: 0 16px;
+            color: #ff69b4;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .share-links a:hover {
+            color: #ff1493;
+        }
+        footer { 
+            margin-top: 50px; 
+            font-size: 0.9em; 
+            color: #666; 
+        }
+        #google_translate_element { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>Oroscopo Q&A: Chiedi alle Stelle! 🌟</h1>
+
+<div id="google_translate_element"></div>
+
+<form id="form">
+    <label for="segno">Il tuo segno zodiacale:</label>
+    <select id="segno">
+        <option value="aries">♈ Ariete</option>
+        <option value="taurus">♉ Toro</option>
+        <option value="gemini">♊ Gemelli</option>
+        <option value="cancer">♋ Cancro</option>
+        <option value="leo">♌ Leone</option>
+        <option value="virgo">♍ Vergine</option>
+        <option value="libra">♎ Bilancia</option>
+        <option value="scorpio">♏ Scorpione</option>
+        <option value="sagittarius">♐ Sagittario</option>
+        <option value="capricorn">♑ Capricorno</option>
+        <option value="aquarius">♒ Acquario</option>
+        <option value="pisces">♓ Pesci</option>
+    </select>
+
+    <label for="giorno">Quando vuoi sapere:</label>
+    <select id="giorno" onchange="aggiornaBottone()">
+        <option value="today">Oggi</option>
+        <option value="tomorrow">Chiedi alla cartomante</option>
+    </select>
+
+    <label for="domanda">Scegli una domanda:</label>
+    <select id="domanda">
+        <option value="Devo farmi interrogare?">Devo farmi interrogare?</option>
+        <option value="Avrò fortuna in amore oggi?">Avrò fortuna in amore oggi?</option>
+        <option value="È un buon giorno per viaggiare?">È un buon giorno per viaggiare?</option>
+        <option value="Dovrei rischiare al lavoro?">Dovrei rischiare al lavoro?</option>
+        <option value="Come andrà la mia salute oggi?">Come andrà la mia salute oggi?</option>
+        <option value="Avrò sorprese finanziarie?">Avrò sorprese finanziarie?</option>
+        <option value="È il momento giusto per fare pace con un amico?">È il momento giusto per fare pace con un amico?</option>
+        <option value="Dovrei iniziare un nuovo hobby?">Dovrei iniziare un nuovo hobby?</option>
+        <option value="Che energia avrò oggi?">Che energia avrò oggi?</option>
+    </select>
+
+    <button type="button" id="btn" onclick="getOroscopo()">Chiedi alle stelle</button>
+</form>
+
+<div id="loading">Sto consultando le stelle...<div class="spinner"></div></div>
+<div id="risposta"></div>
+
+<div class="support-text">
+  Se questo strumento ti è utile, puoi supportarmi con una piccola donazione.<br>
+  È facoltativo e ci aiuta a mantenere il sito gratuito. ❤️<br>
+  <a href="https://www.paypal.me/onlycreator/1" target="_blank" class="support-link">
+    Dona 1€ con PayPal
+  </a>
+</div>
+
+<div class="share-links">
+    Condividi risultato:  
+    <a href="#" onclick="shareOnX()">X (Twitter)</a> • 
+    <a href="#" onclick="shareOnWhatsApp()">WhatsApp</a> • 
+    <a href="#" onclick="shareOnTelegram()">Telegram</a>
+</div>
+
+<footer>
+    <p>Seguici su <a href="https://twitter.com/tuo-account" target="_blank">X</a></p>
+</footer>
+
+<!-- Google Translate -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'it,en,fr,es,de,pt',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+
+    setTimeout(() => {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = 'it';
+            select.dispatchEvent(new Event('change'));
+        }
+    }, 1500);
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+// Cache per API Ninjas
+function getCachedOroscopo(segno) {
+    const key = `oroscopo_${segno}_${new Date().toDateString()}`;
+    const cached = localStorage.getItem(key);
+    return cached ? cached : null;
+}
+
+function setCachedOroscopo(segno, oroscopo) {
+    const key = `oroscopo_${segno}_${new Date().toDateString()}`;
+    localStorage.setItem(key, oroscopo);
+}
+
+// Condivisioni semplici (solo link nativi)
+function shareOnX() {
+    const text = "Ho chiesto alle stelle oggi! 🌟 Scopri il tuo oroscopo divertente: " + window.location.href;
+    window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text), "_blank");
+}
+
+function shareOnWhatsApp() {
+    const text = "Ho chiesto alle stelle oggi! 🌟 Guarda il mio oroscopo divertente: " + window.location.href;
+    window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+}
+
+function shareOnTelegram() {
+    const text = "Ho chiesto alle stelle oggi! 🌟 Guarda il mio oroscopo divertente: " + window.location.href;
+    window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + encodeURIComponent(text), "_blank");
+}
+
+// Cambia testo e stile del bottone
+function aggiornaBottone() {
+    const giorno = document.getElementById("giorno").value;
+    const btn = document.getElementById("btn");
+    
+    if (giorno === "tomorrow") {
+        btn.textContent = "Consulta la sfera 🔮";
+        btn.classList.add("cartomante");
+    } else {
+        btn.textContent = "Chiedi alle stelle";
+        btn.classList.remove("cartomante");
+    }
+}
+
+// 50 interpretazioni diverse
+function interpretaPerDomanda(oroscopo, domanda) {
+    const risposte = [
+        "Le stelle ti dicono di buttarti… ma con il paracadute emotivo pronto!",
+        "Attenzione: l'energia è alta, ma il buonsenso deve restare al volante.",
+        "Oggi è il giorno giusto per osare… o almeno per provarci con stile.",
+        "Il cosmo ti sussurra: 'fai un passo, ma guarda dove metti i piedi'.",
+        "Se senti il cuore battere forte… è perché le stelle stanno applaudendo.",
+        "Non forzare nulla… ma non lasciare che la paura ti tenga fermo/a.",
+        "L’universo ti sta dando un calcio nel sedere… gentilmente.",
+        "È un giorno da 'provo e vedo', ma con un piano B in tasca.",
+        "Le stelle ti consigliano coraggio… e un buon caffè prima.",
+        "Oggi l’intuito è al massimo… fidati, anche se sembra folle.",
+        "Non è il momento di ragionare troppo… lascia parlare il cuore.",
+        "L’energia è elettrica: usala bene o rischi di fulminarti da solo/a!",
+        "Le stelle dicono sì… ma con moderazione e un pizzico di sale.",
+        "È il giorno perfetto per rischiare… o almeno per fantasticare ad alta voce.",
+        "Attenzione a non inciampare nei tuoi stessi sogni.",
+        "Il cosmo ti guarda e dice: 'dai, muoviti, non fare il timido/a!'",
+        "Oggi puoi fare scintille… ma non incendiare tutto!",
+        "Le stelle sono dalla tua parte… ma pretendono impegno.",
+        "Non aspettare il momento perfetto… crealo tu oggi.",
+        "L’universo ti sta passando il testimone… corri!",
+        "Se il cuore dice sì e la testa dice no… oggi vince il cuore.",
+        "È un giorno da leoni… ruggisci, ma senza mordere a vuoto.",
+        "Le stelle ti stanno dando il via libera… non frenare.",
+        "Oggi l’istinto è più affidabile della logica… ascoltalo.",
+        "Il cosmo ti sussurra: 'buttati, il paracadute lo apro io'.",
+        "Non è il momento di giocare in difesa… attacca!",
+        "Le stelle sono in modalità 'fai come ti pare'… approfittane.",
+        "Oggi puoi permetterti di sbagliare… e imparare in fretta.",
+        "L’energia è altissima… canalizzala prima che esploda.",
+        "Il destino ti sta facendo l’occhiolino… non fare finta di non vedere.",
+        "Oggi è permesso sognare in grande… e agire di conseguenza.",
+        "Le stelle dicono: 'corri, ma non inciampare nei dubbi'.",
+        "È il momento di dire sì… anche se la testa trema un po’.",
+        "L’universo ti sta porgendo la mano… stringila forte.",
+        "Non pensare troppo… oggi conta il cuore.",
+        "Le stelle sono in modalità turbo… tieniti!",
+        "Oggi puoi fare follie… ma con un pizzico di sale.",
+        "Il cosmo ti sta dando un via libera con luci al neon.",
+        "Non rimandare… il momento giusto è proprio ora.",
+        "Le stelle ti stanno spingendo… non opporti.",
+        "Oggi è permesso sbagliare… purché lo fai con stile.",
+        "L’energia è da urlo… usala per qualcosa di bello.",
+        "Il destino ti sta sorridendo… ricambia il sorriso.",
+        "Oggi puoi fare follie… ma con un pizzico di sale.",
+        "Le stelle dicono: 'vai, tanto domani si ricomincia'.",
+        "Non avere paura di cadere… le stelle ti raccolgono.",
+        "È il giorno giusto per provarci… senza rete di sicurezza.",
+        "L’universo ti sta dando il via… accelera!",
+        "Oggi il cuore batte più forte della ragione… lascialo fare.",
+        "Le stelle sono tutte per te… non deludere il pubblico."
+    ];
+
+    return risposte[Math.floor(Math.random() * risposte.length)];
+}
+
+// Funzione principale
+async function getOroscopo() {
+    const segno = document.getElementById("segno").value;
+    const giorno = document.getElementById("giorno").value;
+    const domanda = document.getElementById("domanda").value;
+    const rispostaDiv = document.getElementById("risposta");
+    const loading = document.getElementById("loading");
+
+    rispostaDiv.innerHTML = "";
+    loading.style.display = "block";
+
+    try {
+        if (giorno === "tomorrow") {
+            // 50 frasi per la cartomante
+            const cartomanteRisposte = [
+                "Le carte sussurrano: una svolta inaspettata è vicina… fidati del tuo istinto.",
+                "La torre e il sole insieme: cambiamenti improvvisi porteranno luce e chiarezza.",
+                "La luna piena illumina un segreto… ascolta i sogni stanotte.",
+                "Il carro avanza: è tempo di prendere in mano le redini con decisione.",
+                "L'imperatrice sorride: creatività e abbondanza sono in arrivo, coltiva ciò che ami.",
+                "Il mago ti ricorda: hai già tutti gli strumenti, usali con fiducia.",
+                "La ruota della fortuna gira a tuo favore… preparati a una sorpresa positiva.",
+                "L'eremita ti invita a riflettere: la risposta è dentro di te, prenditi un momento.",
+                "Gli amanti ti parlano di scelte importanti: ascolta il cuore, non solo la testa.",
+                "La giustizia bilancia la bilancia: ciò che dai tornerà indietro, karma in azione.",
+                "Il diavolo ti sfida: libera le catene che ti trattengono, è ora di liberarti.",
+                "La morte (trasformazione) chiude un ciclo: lascia andare il vecchio per accogliere il nuovo.",
+                "La temperanza mescola le energie: equilibrio e pazienza saranno le tue alleate.",
+                "Il diavolo e la stella insieme: tentazioni vs speranza… scegli la luce.",
+                "Il mondo completa un ciclo: successo, realizzazione, chiusura felice in vista.",
+                "La forza domata: hai più potere di quanto pensi, usalo con dolcezza.",
+                "Il sole splende: un periodo luminoso sta arrivando, goditelo.",
+                "L’appeso ti chiede di cambiare prospettiva: ciò che sembra un blocco è un’opportunità.",
+                "La ruota gira ancora: il destino è in movimento, resta aperto.",
+                "L’arcano senza nome: un cambiamento profondo è in corso, accoglilo.",
+                "Il giudizio chiama: è tempo di lasciar andare il passato e rinascere.",
+                "L’asso di coppe trabocca: nuove emozioni e relazioni stanno arrivando.",
+                "Il due di bastoni: una scelta tra due strade… quale senti più tua?",
+                "Il tre di spade guarisce: il dolore sta passando, presto tornerà la pace.",
+                "Il sei di denari: generosità e abbondanza circolano intorno a te.",
+                "La regina di coppe ascolta: il cuore sa già la risposta.",
+                "Il re di spade taglia: chiarezza e decisioni nette sono necessarie ora.",
+                "L’otto di bastoni vola: le cose si muovono velocemente, tieniti pronto.",
+                "Il dieci di coppe sorride: armonia familiare e felicità sono possibili.",
+                "Il cavaliere di coppe arriva: un messaggio romantico o creativo in arrivo.",
+                "La papessa custodisce un segreto: non tutto è come appare, osserva.",
+                "L’Imperatore struttura: è tempo di mettere ordine e prendere autorità.",
+                "La stella ti guida: speranza e ispirazione illuminano il cammino.",
+                "Il sole e la luna danzano: emozioni contrastanti, ma tutto si equilibrerà.",
+                "Il matto salta: un nuovo inizio senza paura è dietro l’angolo.",
+                "Il due di coppe unisce: una connessione profonda sta nascendo.",
+                "Il cinque di denari passa: il periodo difficile sta finendo.",
+                "Il sette di spade avverte: attenzione a chi parla alle tue spalle.",
+                "Il nove di coppe soddisfa: un desiderio sta per avverarsi.",
+                "L’ass di bastoni accende: nuova passione, nuovo progetto, nuova energia.",
+                "Il tre di coppe festeggia: momenti di gioia con persone care in arrivo.",
+                "Il quattro di bastoni celebra: stabilità e casa felice si avvicinano.",
+                "Il sei di coppe ricorda: un ricordo dolce o una persona del passato torna.",
+                "Il cavaliere di denari avanza lento: pazienza, i risultati arrivano.",
+                "La forza e il leone: hai il coraggio per superare ogni ostacolo.",
+                "Il sole illumina tutto: un giorno di pura gioia è in arrivo.",
+                "Il mondo ti abbraccia: chiusura di un ciclo con successo e pace.",
+                "L’appeso si libera: ciò che sembrava fermo ora si sblocca.",
+                "Il giudizio risveglia: è tempo di rinascere e lasciar andare il vecchio.",
+                "Il due di spade bilancia: indecisione, ma la scelta giusta è vicina.",
+                "Il quattro di coppe invita: non ignorare il dono che bussa alla porta."
+            ];
+
+            const frase = cartomanteRisposte[Math.floor(Math.random() * cartomanteRisposte.length)];
+
+            rispostaDiv.innerHTML = `
+                <p><strong>La tua domanda:</strong> ${domanda}</p>
+                <p><strong>La cartomante vede:</strong> ${frase}</p>
+            `;
+        } else {
+            // Cache Ninjas
+            let oroscopo = getCachedOroscopo(segno);
+
+            if (!oroscopo) {
+                const apiUrl = `https://api.api-ninjas.com/v1/horoscope?zodiac=${segno}`;
+                const res = await fetch(apiUrl, {
+                    headers: {
+                        'X-Api-Key': 'TC2qLbg89FKtlWCfCYlNG3HtdIbjJbl4li04DOND'
+                    }
+                });
+
+                if (!res.ok) throw new Error(`Errore API: ${res.status}`);
+
+                const data = await res.json();
+                oroscopo = data.horoscope || "Le stelle sono un po' misteriose oggi...";
+                setCachedOroscopo(segno, oroscopo);
+            }
+
+            const frasiDivertenti = [
+                "Quindi, secondo le stelle... ma l'universo ha sempre un pizzico di ironia!",
+                "Le stelle dicono: ... e se non funziona, incolpa Mercurio retrogrado!",
+                "Risposta cosmica: ... ma non giocartela tutta in una volta!",
+                "Le stelle bisbigliano: ... ascolta il tuo istinto, loro oggi sono un po' svogliate!",
+                "Dalle costellazioni: ... almeno non grandina meteoriti oggi!",
+                "Consiglio stellare: ... e se sbagli, dai la colpa a Venere in ferie!",
+                "Le stelle hanno mandato un vocale di 3 minuti… ma era in retrograde!",
+                "Oroscopo di oggi: respira profondamente… e incolpa Giove se sbagli lo stesso.",
+                "Attenzione: Venere è in modalità ghosting, non aspettarti risposte chiare!",
+                "Oggi le stelle sono in smart working… risposte lente e con emoji a caso.",
+                "Il cosmo ti guarda e pensa: 'ma questo/a ci prova davvero?'",
+                "Mercurio retrogrado ha appena mandato un meme al gruppo zodiacale.",
+                "Le stelle dicono: fai come vuoi… tanto domani cambio idea anch’io.",
+                "Saturno è in punizione: oggi niente karma, goditela!",
+                "Urano ha appena fatto l’update del destino… ora è in versione beta.",
+                "Nettuno è ubriaco di sogni: non fidarti di quello che vedi oggi.",
+                "Plutone sta facendo il reset del karma… attenzione ai bug!",
+                "Le stelle hanno aperto TikTok: aspettati trend assurdi oggi.",
+                "Giove ha promesso mari e monti… ma ha dimenticato il budget.",
+                "La Luna è in fase 'teenager': risposte scontrose e porte sbattute.",
+                "Marte è andato in palestra… oggi tutti un po’ troppo aggressivi.",
+                "Venere ha messo il filtro bellezza cosmico: tutti sembrano più belli oggi.",
+                "Saturno ha il blocco dello scrittore: niente lezioni di vita oggi.",
+                "Mercurio ha perso le chiavi del pensiero razionale… buonanotte.",
+                "Le costellazioni stanno litigando su chi deve darti l’oroscopo oggi.",
+                "Il Sole è in vacanza: oggi è tutto un po’ spento, scusate.",
+                "Urano ha cliccato 'non mi interessa più' sul tuo piano di vita.",
+                "Nettuno sta guardando Netflix invece di scrivere il tuo destino.",
+                "Plutone ha fatto il detox dal tuo ex karma.",
+                "Giove ha aperto un mutuo cosmico: ora devi restituire gli anni buoni.",
+                "La Luna è in modalità 'voglio tutto e subito'… calma.",
+                "Marte ha bevuto troppi energy drink: impulsività garantita.",
+                "Venere sta flirtando con tutti i segni… gelosia cosmica in arrivo.",
+                "Saturno ha messo il parental control sul divertimento.",
+                "Mercurio sta mandando vocali di 7 minuti… nessuno li ascolta.",
+                "Le stelle hanno fatto il merge del tuo destino con quello sbagliato.",
+                "Urano ha appena scoperto le emoji… preparati a caos grafico.",
+                "Nettuno ha bevuto troppo caffè cosmico… visioni confuse.",
+                "Plutone sta facendo pulizia: addio vecchie abitudini (forse).",
+                "Giove ha aperto un crowdfunding per la tua fortuna… dona!",
+                "La Luna è in fase 'mood': oggi piangi e ridi nello stesso minuto.",
+                "Marte è in ritardo: l’azione arriverà… forse domani.",
+                "Venere ha messo il cuore spezzato in evidenza… attenzione.",
+                "Saturno ha detto: 'prima i compiti, poi la felicità'.",
+                "Mercurio ha il 5G ma zero batteria… risposte lente.",
+                "Le costellazioni hanno aperto un gruppo WhatsApp… gossip cosmico.",
+                "Il Sole ha messo le ferie: oggi è tutto un po’ spento, scusate.",
+                "Urano ha cliccato 'non mi interessa più' sul tuo piano di vita.",
+                "Nettuno sta guardando Netflix invece di scrivere il tuo destino.",
+                "Plutone ha fatto il detox dal tuo ex karma.",
+                "Giove ha promesso mari e monti… ma ha portato solo la sabbia."
+            ];
+
+            const fraseRandom = frasiDivertenti[Math.floor(Math.random() * frasiDivertenti.length)];
+
+            const interpretazione = interpretaPerDomanda(oroscopo, domanda);
+
+            rispostaDiv.innerHTML = `
+                <p><strong>La tua domanda:</strong> ${domanda}</p>
+                <p><strong>Oroscopo (Oggi):</strong> ${oroscopo}</p>
+                <p><strong>Interpretazione per la tua domanda:</strong> ${interpretazione}</p>
+                <p><strong>Risposta divertente:</strong> ${fraseRandom}</p>
+                <p><small>(Usa il widget sopra per tradurre in italiano)</small></p>
+            `;
+        }
+    } catch (error) {
+        rispostaDiv.innerHTML = `
+            <p><strong>La tua domanda:</strong> ${domanda}</p>
+            <p>Le stelle sono un po' confuse oggi… riprova tra poco 🌙<br>
+            (dettaglio: ${error.message})</p>
+        `;
+        console.error("Errore:", error);
+    } finally {
+        loading.style.display = "none";
+    }
+}
+
+// Inizializza il bottone all'avvio
+document.addEventListener("DOMContentLoaded", aggiornaBottone);
+</script>
+
+</body>
+</html>
