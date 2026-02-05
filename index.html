@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oroscopo Q&A Divertente</title>
+    <title>AskingStars – Oroscopo Q&A Divertente e Ironico</title>
+
+    <!-- SEO base -->
+    <meta name="description" content="AskingStars: oroscopo interattivo e divertente. Scegli il tuo segno zodiacale, la domanda e ottieni risposte dalle stelle o dalla cartomante. Oggi, domani e sempre con ironia! 🌟🔮">
+    <meta name="keywords" content="oroscopo, oroscopo divertente, chiedi alle stelle, cartomante, astrologia interattiva, segno zodiacale, oroscopo oggi, oroscopo domani">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://askingstars.com/">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:title" content="AskingStars – Oroscopo Q&A Divertente">
+    <meta property="og:description" content="Chiedi alle stelle o alla cartomante risposte ironiche e personalizzate al tuo segno zodiacale. Divertiti con l'oroscopo di oggi e domani! 🌟🔮">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://askingstars.com/">
+    <meta property="og:image" content="https://askingstars.com/images/anteprima-social.jpg"> <!-- 1200×630 consigliato -->
+    <meta property="og:site_name" content="AskingStars">
+    <meta property="og:locale" content="it_IT">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AskingStars – Oroscopo Q&A Divertente">
+    <meta name="twitter:description" content="Oroscopo interattivo e ironico: stelle o cartomante? Scegli la tua domanda e scopri la risposta! 🌟🔮">
+    <meta name="twitter:image" content="https://askingstars.com/images/anteprima-social.jpg">
+    <meta name="twitter:site" content="@tuo-account-su-x">
+
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -14,7 +41,8 @@
             padding: 20px; 
             margin: 0; 
         }
-        h1 { color: #ff4c81; margin-bottom: 25px; }
+        h1, h2, h3 { color: #ff4c81; }
+        h2 { margin-top: 2.5em; }
         form { 
             max-width: 420px; 
             margin: auto; 
@@ -75,8 +103,9 @@
             100% { transform: rotate(360deg); }
         }
         .support-text {
-            margin: 30px 0 10px;
-            font-size: 0.95em;
+            margin: 50px 0 40px;
+            text-align: center;
+            font-size: 1.05em;
             color: #555;
         }
         .support-link {
@@ -110,7 +139,10 @@
 </head>
 <body>
 
-<h1>Oroscopo Q&A: Chiedi alle Stelle! 🌟</h1>
+<h1>AskingStars – Oroscopo Q&A Divertente e Ironico 🌟</h1>
+
+<h2>Chiedi alle stelle o alla cartomante</h2>
+<p>Scegli il tuo segno zodiacale, la domanda e ottieni una risposta personalizzata, sempre con un pizzico di ironia.</p>
 
 <div id="google_translate_element"></div>
 
@@ -156,25 +188,27 @@
 <div id="loading">Sto consultando le stelle...<div class="spinner"></div></div>
 <div id="risposta"></div>
 
-<div class="support-text" style="margin: 50px 0 40px; text-align: center; font-size: 1.05em; color: #555;">
-    Se AskingStars ti diverte, ti è utile o ti strappa un sorriso,<br>
-    puoi supportarmi con una piccola donazione. È facoltativo e mi aiuta tantissimo a continuare a creare! 🌟❤️<br><br>
+<div class="support-text">
+    <h2>Ti piace AskingStars?</h2>
+    <p>Se questo strumento ti diverte, ti è utile o ti strappa un sorriso,<br>
+    puoi supportarmi con una piccola donazione. È facoltativo e mi aiuta tantissimo a continuare a creare! 🌟❤️</p>
     
     <a href="https://github.com/sponsors/alessandromemmola" target="_blank"
-       style="display: inline-block; padding: 16px 40px; background: #ea4aaa; color: white; font-weight: bold; border-radius: 50px; text-decoration: none; box-shadow: 0 6px 18px rgba(234,74,170,0.35); transition: all 0.25s;">
+       style="display: inline-block; margin-top: 15px; padding: 16px 40px; background: #ea4aaa; color: white; font-weight: bold; border-radius: 50px; text-decoration: none; box-shadow: 0 6px 18px rgba(234,74,170,0.35); transition: all 0.25s;">
        Supportami su GitHub Sponsors
     </a>
 </div>
 
 <div class="share-links">
-    Condividi risultato:  
+    <h3>Condividi il risultato</h3>
     <a href="#" onclick="shareOnX()">X (Twitter)</a> • 
     <a href="#" onclick="shareOnWhatsApp()">WhatsApp</a> • 
     <a href="#" onclick="shareOnTelegram()">Telegram</a>
 </div>
 
 <footer>
-    <p>Seguici su <a href="https://twitter.com/tuo-account" target="_blank">X</a></p>
+    <p>Creato da <a href="https://nomecognome.com">Alessandro Memmola</a><br>
+    Seguimi su <a href="https://twitter.com/tuo-account">X</a></p>
 </footer>
 
 <!-- Google Translate -->
@@ -312,7 +346,6 @@ async function getOroscopo() {
 
     try {
         if (giorno === "tomorrow") {
-            // 50 frasi per la cartomante
             const cartomanteRisposte = [
                 "Le carte sussurrano: una svolta inaspettata è vicina… fidati del tuo istinto.",
                 "La torre e il sole insieme: cambiamenti improvvisi porteranno luce e chiarezza.",
@@ -370,11 +403,12 @@ async function getOroscopo() {
             const frase = cartomanteRisposte[Math.floor(Math.random() * cartomanteRisposte.length)];
 
             rispostaDiv.innerHTML = `
-                <p><strong>La tua domanda:</strong> ${domanda}</p>
-                <p><strong>La cartomante vede:</strong> ${frase}</p>
+                <h3>La tua domanda</h3>
+                <p>${domanda}</p>
+                <h3>La cartomante vede</h3>
+                <p>${frase}</p>
             `;
         } else {
-            // Cache Ninjas
             let oroscopo = getCachedOroscopo(segno);
 
             if (!oroscopo) {
@@ -451,16 +485,20 @@ async function getOroscopo() {
             const interpretazione = interpretaPerDomanda(oroscopo, domanda);
 
             rispostaDiv.innerHTML = `
-                <p><strong>La tua domanda:</strong> ${domanda}</p>
-                <p><strong>Oroscopo (Oggi):</strong> ${oroscopo}</p>
-                <p><strong>Interpretazione per la tua domanda:</strong> ${interpretazione}</p>
-                <p><strong>Risposta divertente:</strong> ${fraseRandom}</p>
+                <h3>La tua domanda</h3>
+                <p>${domanda}</p>
+                <h3>Oroscopo di oggi</h3>
+                <p>${oroscopo}</p>
+                <h3>Interpretazione per la tua domanda</h3>
+                <p>${interpretazione}</p>
+                <h3>Risposta divertente</h3>
+                <p>${fraseRandom}</p>
                 <p><small>(Usa il widget sopra per tradurre in italiano)</small></p>
             `;
         }
     } catch (error) {
         rispostaDiv.innerHTML = `
-            <p><strong>La tua domanda:</strong> ${domanda}</p>
+            <h3>Errore</h3>
             <p>Le stelle sono un po' confuse oggi… riprova tra poco 🌙<br>
             (dettaglio: ${error.message})</p>
         `;
@@ -475,5 +513,4 @@ document.addEventListener("DOMContentLoaded", aggiornaBottone);
 </script>
 
 </body>
-
 </html>
