@@ -262,6 +262,11 @@ function shareOnTelegram() {
     window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + encodeURIComponent(text), "_blank");
 }
 
+function shareOnFacebook() {
+    const text = "Ho chiesto alle stelle oggi! 🌟 Guarda il mio oroscopo divertente: " + window.location.href;
+    window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&quote=" + encodeURIComponent(text); "_blank");
+}    
+
 // Cambia testo e stile del bottone
 function aggiornaBottone() {
     const giorno = document.getElementById("giorno").value;
