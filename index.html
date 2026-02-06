@@ -247,6 +247,7 @@ function setCachedOroscopo(segno, oroscopo) {
 }
 
 // Condivisioni semplici (solo link nativi)
+// Condivisioni semplici
 function shareOnX() {
     const text = "Hai chiesto alle stelle oggi? 🌟 Scopri il tuo oroscopo divertente: " + window.location.href;
     window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text), "_blank");
@@ -263,9 +264,10 @@ function shareOnTelegram() {
 }
 
 function shareOnFacebook() {
-    const text = "Hai chiesto alle stelle oggi? 🌟 Guarda il mio oroscopo divertente: " + window.location.href;
-    window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&quote=" + encodeURIComponent(text); "_blank");
-}    
+    const url = window.location.href;
+    const text = "Hai chiesto alle stelle oggi? 🌟 Guarda il mio oroscopo divertente!";
+    window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&quote=" + encodeURIComponent(text), "_blank");
+}
 
 // Cambia testo e stile del bottone
 function aggiornaBottone() {
