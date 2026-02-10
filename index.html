@@ -425,14 +425,8 @@ async function getOroscopo() {
             let oroscopo = getCachedOroscopo(segno);
 
             if (!oroscopo) {
-                const apiUrl = `https://api.api-ninjas.com/v1/horoscope?zodiac=${segno}`;
-                const res = await fetch(apiUrl, {
-                    headers: {
-                        'X-Api-Key': 'wVikifIGfygxKKX5MleytVHmGbZ52EgjGxlHCYX5'
-                    }
-                });
-
-                if (!res.ok) throw new Error(`Errore API: ${res.status}`);
+                const apiUrl = `/api/ninjas-horoscope?zodiac=${segno}`;
+                const res = await fetch(apiUrl);
 
                 const data = await res.json();
                 oroscopo = data.horoscope || "Le stelle sono un po' misteriose oggi...";
