@@ -1,6 +1,7 @@
 // api/ninjas-horoscope.js
 
 const zodiacMap = {
+  // italiano
   ariete: 'aries',
   toro: 'taurus',
   gemelli: 'gemini',
@@ -12,7 +13,20 @@ const zodiacMap = {
   sagittario: 'sagittarius',
   capricorno: 'capricorn',
   acquario: 'aquarius',
-  pesci: 'pisces'
+  pesci: 'pisces',
+  // inglese (aggiunti per sicurezza e test)
+  aries: 'aries',
+  taurus: 'taurus',
+  gemini: 'gemini',
+  cancer: 'cancer',
+  leo: 'leo',
+  virgo: 'virgo',
+  libra: 'libra',
+  scorpio: 'scorpio',
+  sagittarius: 'sagittarius',
+  capricorn: 'capricorn',
+  aquarius: 'aquarius',
+  pisces: 'pisces'
 };
 
 export default async function handler(req, res) {
