@@ -446,7 +446,7 @@ async function getOroscopo() {
 
             if (!oroscopo) {
                 const zodiac = zodiacMap[segno.toLowerCase()] || segno.toLowerCase();
-                const apiUrl = `https://askingstars.vercel.app/api/ninjas-horoscope?zodiac=${zodiac}`;
+                const apiUrl = `https://askingstars.com/api/ninjas-horoscope?zodiac=${zodiac}`;
                 const res = await fetch(apiUrl);
 
                 if (!res.ok) throw new Error(`Errore API: ${res.status}`);
