@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AskingStars – Oroscopo Q&A Divertente e Ironico</title>
+    <title>🌟 AskingStars – Oroscopo Q&A Divertente e Ironico 🌟</title>
 
     <!-- SEO base -->
     <meta name="description" content="AskingStars: oroscopo interattivo e divertente. Scegli il tuo segno zodiacale, la domanda e ottieni risposte dalle stelle o dalla cartomante. Oggi, domani e sempre con ironia! ">
@@ -139,34 +139,34 @@
 </head>
 <body>
 
-<h1>AskingStars – Oroscopo Q&A Divertente e Ironico </h1>
+<h1>🌟 AskingStars – Oroscopo Q&A Divertente e Ironico 🌟</h1>
 
-<h2>Chiedi alle stelle o alla cartomante</h2>
-<p>Scegli il tuo segno zodiacale, la domanda e ottieni una risposta personalizzata, sempre con un pizzico di ironia.</p>
+<h2>🔮 Chiedi alle stelle o alla cartomante</h2>
+<p>Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮</p>
 
 <div id="google_translate_element"></div>
 
 <form id="form">
     <label for="segno">Il tuo segno zodiacale:</label>
     <select id="segno">
-        <option value="ariete">Ariete</option>
-        <option value="toro">Toro</option>
-        <option value="gemelli">Gemelli</option>
-        <option value="cancro">Cancro</option>
-        <option value="leone">Leone</option>
-        <option value="vergine">Vergine</option>
-        <option value="bilancia">Bilancia</option>
-        <option value="scorpione">Scorpione</option>
-        <option value="sagittario">Sagittario</option>
-        <option value="capricorno">Capricorno</option>
-        <option value="acquario">Acquario</option>
-        <option value="pesci">Pesci</option>
+        <option value="ariete">Ariete ♈</option>
+        <option value="toro">Toro ♉</option>
+        <option value="gemelli">Gemelli ♊</option>
+        <option value="cancro">Cancro ♋</option>
+        <option value="leone">Leone ♌</option>
+        <option value="vergine">Vergine ♍</option>
+        <option value="bilancia">Bilancia ♎</option>
+        <option value="scorpione">Scorpione ♏</option>
+        <option value="sagittario">Sagittario ♐</option>
+        <option value="capricorno">Capricorno ♑</option>
+        <option value="acquario">Acquario ♒</option>
+        <option value="pesci">Pesci ♓</option>
     </select>
 
     <label for="giorno">Quando vuoi sapere:</label>
     <select id="giorno" onchange="aggiornaBottone()">
-        <option value="today">Oggi</option>
-        <option value="tomorrow">Chiedi alla cartomante</option>
+        <option value="today">Oggi 🌞</option>
+        <option value="tomorrow">Chiedi alla cartomante 🔮</option>
     </select>
 
     <label for="domanda">Scegli una domanda:</label>
@@ -185,11 +185,11 @@
     <button type="button" id="btn" onclick="getOroscopo()">Chiedi alle stelle</button>
 </form>
 
-<div id="loading">Sto consultando le stelle...<div class="spinner"></div></div>
+<div id="loading">Sto consultando le stelle... <div class="spinner"></div></div>
 <div id="risposta"></div>
 
 <div class="support-text">
-    <h2>Ti piace AskingStars?</h2>
+    <h2>Ti piace AskingStars? ❤️</h2>
     <p>Se questo strumento ti diverte, ti è utile o ti strappa un sorriso,<br>
     puoi supportarmi con una piccola donazione. È facoltativo e mi aiuta tantissimo a continuare a creare! </p>
     
@@ -208,7 +208,8 @@
 </div>
 
 <footer>
-    <p>Creato da Alessandro Memmola © 2026 – AskingStars è open source sotto licenza MIT – sentiti libero di forkare, studiare e modificare, ma mantieni il credito all'autore.</p>
+    <p>Creato da Alessandro Memmola © 2026</p>
+    <p>AskingStars è open source sotto licenza MIT – sentiti libero di forkare, studiare e modificare, ma mantieni il credito all'autore.</p>
     <p>
         <a href="https://alessandromemmola.com">Sito personale</a> · 
         <a href="https://github.com/alessandromemmola">GitHub</a> · 
@@ -295,10 +296,10 @@ function aggiornaBottone() {
     const btn = document.getElementById("btn");
     
     if (giorno === "tomorrow") {
-        btn.textContent = "Consulta la sfera";
+        btn.textContent = "Consulta la sfera 🔮";
         btn.classList.add("cartomante");
     } else {
-        btn.textContent = "Chiedi alle stelle";
+        btn.textContent = "Chiedi alle stelle 🌟";
         btn.classList.remove("cartomante");
     }
 }
@@ -518,7 +519,7 @@ async function getOroscopo() {
     } catch (error) {
         rispostaDiv.innerHTML = `
             <h3>Errore</h3>
-            <p>Le stelle sono un po' confuse oggi… riprova tra poco <br>
+            <p>Le stelle sono un po' confuse oggi… riprova tra poco 🌙<br>
             (dettaglio: ${error.message})</p>
         `;
         console.error("Errore:", error);
