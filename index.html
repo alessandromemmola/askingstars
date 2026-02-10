@@ -60,6 +60,7 @@
       border-radius: 10px;
       min-height: 120px;
       white-space: pre-wrap;
+      line-height: 1.5;
     }
     footer {
       text-align: center;
@@ -71,6 +72,10 @@
     footer a {
       color: #58a6ff;
       text-decoration: none;
+      margin: 0 8px;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -86,18 +91,19 @@
   <div class="card">
     <h2 style="margin-top:0">Oroscopo di oggi</h2>
     <p>Scegli il tuo segno zodiacale:</p>
-    <button onclick="getOroscopo('ariete', 'today')">Ariete</button>
-    <button onclick="getOroscopo('toro', 'today')">Toro</button>
-    <button onclick="getOroscopo('gemelli', 'today')">Gemelli</button>
-    <button onclick="getOroscopo('cancro', 'today')">Cancro</button>
-    <button onclick="getOroscopo('leone', 'today')">Leone</button>
-    <button onclick="getOroscopo('vergine', 'today')">Vergine</button>
-    <button onclick="getOroscopo('bilancia', 'today')">Bilancia</button>
-    <button onclick="getOroscopo('scorpione', 'today')">Scorpione</button>
-    <button onclick="getOroscopo('sagittario', 'today')">Sagittario</button>
-    <button onclick="getOroscopo('capricorno', 'today')">Capricorno</button>
-    <button onclick="getOroscopo('acquario', 'today')">Acquario</button>
-    <button onclick="getOroscopo('pesci', 'today')">Pesci</button>
+
+    <button onclick="getOroscopo('ariete')">Ariete</button>
+    <button onclick="getOroscopo('toro')">Toro</button>
+    <button onclick="getOroscopo('gemelli')">Gemelli</button>
+    <button onclick="getOroscopo('cancro')">Cancro</button>
+    <button onclick="getOroscopo('leone')">Leone</button>
+    <button onclick="getOroscopo('vergine')">Vergine</button>
+    <button onclick="getOroscopo('bilancia')">Bilancia</button>
+    <button onclick="getOroscopo('scorpione')">Scorpione</button>
+    <button onclick="getOroscopo('sagittario')">Sagittario</button>
+    <button onclick="getOroscopo('capricorno')">Capricorno</button>
+    <button onclick="getOroscopo('acquario')">Acquario</button>
+    <button onclick="getOroscopo('pesci')">Pesci</button>
 
     <div id="risposta"></div>
   </div>
@@ -107,7 +113,7 @@
 <footer>
   <p>Creato da Alessandro Memmola © 2026 – AskingStars è open source (licenza MIT)</p>
   <p>
-    <a href="https://alessandromemmola.com">Sito personale</a> ·
+    <a href="https://alessandromemmola.com" target="_blank">Sito personale</a> ·
     <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a> ·
     <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a> ·
     <a href="https://x.com/alexmemmola" target="_blank">X</a>
@@ -115,54 +121,41 @@
 </footer>
 
 <script>
-async function getOroscopo(segno, giorno = 'today') {
+async function getOroscopo(segno) {
   const rispostaDiv = document.getElementById('risposta');
   rispostaDiv.innerHTML = '<em>Caricamento...</em>';
 
-  if (giorno === 'today') {
-    // Chiamata al proxy Vercel (chiave nascosta)
-    const apiUrl = `/api/ninjas-horoscope?zodiac=${segno}`;
+  // Chiamata al proxy Vercel (chiave nascosta lato server)
+  const apiUrl = `/api/ninjas-horoscope?zodiac=${segno}`;
+
+  try {
+    const res = await fetch(apiUrl);
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`Errore HTTP ${res.status}: ${text.substring(0, 200)}`);
+    }
+
+    const text = await res.text();
 
     try {
-      const res = await fetch(apiUrl);
+      const data = JSON.parse(text);
 
-      if (!res.ok) {
-        throw new Error(`Errore HTTP ${res.status}`);
+      if (data.error) {
+        rispostaDiv.innerHTML = `<strong>Errore:</strong> ${data.error}`;
+      } else {
+        rispostaDiv.innerHTML = `
+          <strong>${data.sign || segno.charAt(0).toUpperCase() + segno.slice(1)}</strong><br>
+          <em>${data.horoscope || 'Nessun oroscopo disponibile oggi'}</em>
+        `;
       }
-
-      const text = await res.text(); // prima prendiamo come testo
-
-      try {
-        const data = JSON.parse(text);
-        if (data.error) {
-          rispostaDiv.innerHTML = `<strong>Errore:</strong> ${data.error}`;
-        } else {
-          rispostaDiv.innerHTML = `
-            <strong>${data.sign || segno}</strong><br>
-            <em>${data.horoscope || 'Nessun oroscopo disponibile'}</em>
-          `;
-        }
-      } catch (jsonErr) {
-        console.error('Errore JSON:', jsonErr, 'Risposta:', text);
-        rispostaDiv.innerHTML = `<strong>Errore:</strong> Risposta non valida dal server<br><small>${text.substring(0, 200)}...</small>`;
-      }
-    } catch (err) {
-      console.error('Errore fetch:', err);
-      rispostaDiv.innerHTML = `<strong>Errore:</strong> Impossibile contattare il servizio<br><small>${err.message}</small>`;
+    } catch (jsonErr) {
+      console.error('Errore parsing JSON:', jsonErr, 'Risposta ricevuta:', text);
+      rispostaDiv.innerHTML = `<strong>Errore:</strong> Risposta non valida dal server<br><small>${text.substring(0, 300)}...</small>`;
     }
-  } else {
-    // Cartomante – versione locale (nessuna API)
-    const cartomanteRisposte = [
-      "Le stelle dicono: oggi è il giorno giusto per fare casino.",
-      "La cartomante vede... un caffè versato e un'opportunità persa.",
-      "Attento al tuo ex che torna a chiedere scusa (spoiler: non cambiare).",
-      "Oggi Marte è incazzato: evita discussioni inutili.",
-      "Giove ti sorride... ma solo se paghi il caffè a qualcuno.",
-      // ... aggiungi altre se vuoi
-    ];
-
-    const frase = cartomanteRisposte[Math.floor(Math.random() * cartomanteRisposte.length)];
-    rispostaDiv.innerHTML = `<em>La cartomante sussurra:</em><br>${frase}`;
+  } catch (err) {
+    console.error('Errore fetch:', err);
+    rispostaDiv.innerHTML = `<strong>Errore:</strong> Impossibile contattare le stelle<br><small>${err.message}</small>`;
   }
 }
 </script>
