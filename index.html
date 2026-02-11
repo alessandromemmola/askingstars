@@ -239,7 +239,7 @@ function googleTranslateElementInit() {
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
-// Cache per API Ninjas
+// Cache per oroscopo
 function getCachedOroscopo(segno) {
     const key = `oroscopo_${segno}_${new Date().toDateString()}`;
     const cached = localStorage.getItem(key);
@@ -412,7 +412,8 @@ async function getOroscopo() {
                 "Il mondo ti abbraccia: chiusura di un ciclo con successo e pace. 🌍",
                 "L’appeso si libera: ciò che sembrava fermo ora si sblocca. ⛓️",
                 "Il giudizio risveglia: è tempo di rinascere e lasciar andare il vecchio. 📯",
-                "Il due di spade bilancia: indecisione, ma la scelta giusta è vicina. ⚔️"
+                "Il due di spade bilancia: indecisione, ma la scelta giusta è vicina. ⚔️",
+                "Il quattro di coppe invita: non ignorare il dono che bussa alla porta. 🎁"
             ];
 
             const frase = cartomanteRisposte[Math.floor(Math.random() * cartomanteRisposte.length)];
@@ -428,6 +429,8 @@ async function getOroscopo() {
 
             if (!oroscopo) {
                 const apiUrl = `https://askingstars.vercel.app/api/ninjas-horoscope?zodiac=${segno}`;
+                console.log("Tentativo fetch:", apiUrl); // per debug in console
+
                 const res = await fetch(apiUrl);
 
                 if (!res.ok) {
