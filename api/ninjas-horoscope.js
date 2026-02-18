@@ -39,14 +39,14 @@ export default async function handler(req, res) {
     } else {
       console.log(`Ninjas non disponibile (${ninjasResponse.status}), passo a fallback`);
 
-      // 2. Nuovo fallback: horoscopefree (sempre disponibile)
-      const fallbackUrl = `https://horoscopefree.herokuapp.com/daily/${sign}`;
+      // 2. Nuovo fallback: Ohmanda (free, stabile, GET)
+      const fallbackUrl = `https://ohmanda.com/api/horoscope/${sign}`;
       const fallbackResponse = await fetch(fallbackUrl);
 
       if (fallbackResponse.ok) {
         const json = await fallbackResponse.json();
         horoscopeText = json.horoscope || "Le stelle oggi sono silenziose...";
-        source = 'horoscopefree';
+        source = 'ohmanda';
       } else {
         throw new Error('Entrambe le API hanno fallito');
       }
