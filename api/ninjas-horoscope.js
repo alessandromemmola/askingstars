@@ -39,24 +39,25 @@ export default async function handler(req, res) {
     } else {
       console.log(`Ninjas non disponibile (${ninjasResponse.status}), passo a fallback`);
 
-      // 2. Nuovo fallback: Aztro (sempre disponibile, gratuita)
-      const aztroUrl = `https://aztro.sameerkumar.website/?sign=${sign}&day=today`;
-      const aztroResponse = await fetch(aztroUrl, { method: 'POST' });  // Aztro usa POST
+      // 2. Nuovo fallback: horoscopefree (sempre disponibile)
+      const fallbackUrl = `https://horoscopefree.herokuapp.com/daily/${sign}`;
+      const fallbackResponse = await fetch(fallbackUrl);
 
-      if (aztroResponse.ok) {
-        const json = await aztroResponse.json();
-        horoscopeText = json.description || "Le stelle oggi sono silenziose...";
-        source = 'aztro';
+      if (fallbackResponse.ok) {
+        const json = await fallbackResponse.json();
+        horoscopeText = json.horoscope || "Le stelle oggi sono silenziose...";
+        source = 'horoscopefree';
       } else {
         throw new Error('Entrambe le API hanno fallito');
       }
     }
 
+    // Risposta unificata
     return res.status(200).json({
       horoscope: horoscopeText,
       date: new Date().toISOString().split('T')[0],
       sign: sign.charAt(0).toUpperCase() + sign.slice(1),
-      source
+      source // per debug
     });
 
   } catch (err) {
