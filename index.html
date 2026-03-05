@@ -153,7 +153,19 @@
 <h2>🔮 Chiedi alle stelle o alla cartomante</h2>
 <p>Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮</p>
 
-<div id="google_translate_element"></div>
+<!-- Selettore lingua manuale -->
+<div id="lang-selector" style="margin-bottom:10px;">
+    <select id="lingua-select" onchange="cambiaLinguaManuale(this.value)"
+        style="padding:8px 12px; border-radius:8px; border:1px solid #ddd; font-size:15px; cursor:pointer;">
+        <option value="it">🇮🇹 Italiano</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="pt">🇵🇹 Português</option>
+    </select>
+</div>
+<div id="google_translate_element" style="display:none;"></div>
 
 <form id="form">
     <label for="segno">Il tuo segno zodiacale:</label>
@@ -754,11 +766,30 @@ const traduzioni = {
     }
 };
 
+// Lingua corrente manuale
+let linguaAttiva = 'it';
+
+function cambiaLinguaManuale(lingua) {
+    linguaAttiva = traduzioni[lingua] ? lingua : 'it';
+    updateDomandeSelect(linguaAttiva);
+    updateSegnoSelect(linguaAttiva);
+    updateGiornoSelect(linguaAttiva);
+
+    // Triggera anche Google Translate per titoli, testi statici e footer
+    const gtSelect = document.querySelector('.goog-te-combo');
+    if (gtSelect) {
+        gtSelect.value = lingua;
+        gtSelect.dispatchEvent(new Event('change'));
+    }
+
+    if (document.getElementById("risposta").innerHTML.trim() !== "") {
+        getOroscopo();
+    }
+}
+
 // Funzione per rilevare lingua corrente
 function getLinguaCorrente() {
-    const select = document.querySelector('.goog-te-combo');
-    const lingua = select ? select.value : 'it';
-    return traduzioni[lingua] ? lingua : 'it';
+    return linguaAttiva;
 }
 
 // Aggiorna testi domande nel select
@@ -931,24 +962,6 @@ async function getOroscopo() {
 // Init
 document.addEventListener("DOMContentLoaded", () => {
     aggiornaBottone();
-
-    // Attende che Google Translate sia pronto prima di agganciare il listener
-    const waitForTranslate = setInterval(() => {
-        const translateSelect = document.querySelector('.goog-te-combo');
-        if (translateSelect) {
-            clearInterval(waitForTranslate);
-            translateSelect.addEventListener('change', () => {
-                if (isRetriggering) return;
-                const nuovaLingua = getLinguaCorrente();
-                updateDomandeSelect(nuovaLingua);
-                updateSegnoSelect(nuovaLingua);
-                updateGiornoSelect(nuovaLingua);
-                if (document.getElementById("risposta").innerHTML.trim() !== "") {
-                    getOroscopo();
-                }
-            });
-        }
-    }, 300);
 });
 
 </script>
