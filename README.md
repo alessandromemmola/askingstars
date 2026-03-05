@@ -10,6 +10,7 @@ Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risp
 - Supportami: https://github.com/sponsors/alessandromemmola
 
 ## Licenza
-MIT License – vedi il file [LICENSE](LICENSE) per i dettagli completi.
+ Gratuito per embed su qualsiasi sito.  
+    <a href="https://askingstars.com/licenza-widget" target="_blank">Leggi la licenza completa</a>
 
 Buon divertimento con le stelle! ✨
