@@ -21,7 +21,7 @@
     <meta property="og:description" content="Chiedi alle stelle o alla cartomante risposte ironiche e personalizzate al tuo segno zodiacale. Divertiti con l'oroscopo di oggi e domani! ">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://askingstars.com/images/anteprima-social.jpg">
-    <meta property="og:image:secure_url" content="https://askingstars.com/images/anteprima-social.jpg"> <!-- Per HTTPS -->
+    <meta property="og:image:secure_url" content="https://askingstars.com/images/anteprima-social.jpg">
     <meta property="og:image:alt" content="Anteprima AskingStars – Oroscopo Divertente">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -119,9 +119,7 @@
             font-weight: bold;
             text-decoration: none;
         }
-        .support-link:hover {
-            text-decoration: underline;
-        }
+        .support-link:hover { text-decoration: underline; }
         .share-links {
             margin: 20px 0;
             font-size: 1.1em;
@@ -132,9 +130,7 @@
             text-decoration: none;
             font-weight: 500;
         }
-        .share-links a:hover {
-            color: #ff1493;
-        }
+        .share-links a:hover { color: #ff1493; }
         footer { 
             margin-top: 50px; 
             font-size: 0.9em;
@@ -246,6 +242,10 @@ function googleTranslateElementInit() {
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
+
+// Flag globale per evitare loop nel ri-trigger
+let isRetriggering = false;
+
 // Array di traduzioni (IT/EN)
 const traduzioni = {
     it: {
@@ -276,12 +276,12 @@ const traduzioni = {
             "Il cosmo ti sussurra: 'fai un passo, ma guarda dove metti i piedi'. 👣",
             "Se senti il cuore battere forte… è perché le stelle stanno applaudendo. 👏",
             "Non forzare nulla… ma non lasciare che la paura ti tenga fermo/a. ❤️",
-            "L’universo ti sta dando un calcio nel sedere… gentilmente. 👟",
+            "L'universo ti sta dando un calcio nel sedere… gentilmente. 👟",
             "È un giorno da 'provo e vedo', ma con un piano B in tasca. 🗺️",
             "Le stelle ti consigliano coraggio… e un buon caffè prima. ☕",
-            "Oggi l’intuito è al massimo… fidati, anche se sembra folle. 🧠",
+            "Oggi l'intuito è al massimo… fidati, anche se sembra folle. 🧠",
             "Non è il momento di ragionare troppo… lascia parlare il cuore. 💖",
-            "L’energia è elettrica: usala bene o rischi di fulminarti da solo/a! ⚡",
+            "L'energia è elettrica: usala bene o rischi di fulminarti da solo/a! ⚡",
             "Le stelle dicono sì… ma con moderazione e un pizzico di sale. 🧂",
             "È il giorno perfetto per rischiare… o almeno per fantasticare ad alta voce. 🎤",
             "Attenzione a non inciampare nei tuoi stessi sogni. 💭",
@@ -289,12 +289,12 @@ const traduzioni = {
             "Oggi puoi fare scintille… ma non incendiare tutto! 🔥",
             "Le stelle sono dalla tua parte… ma pretendono impegno. 🤝",
             "Non aspettare il momento perfetto… crealo tu oggi. ✂️",
-            "L’universo ti sta passando il testimone… corri! 🏁",
+            "L'universo ti sta passando il testimone… corri! 🏁",
             "Se il cuore dice sì e la testa dice no… oggi vince il cuore. ❤️",
             "È un giorno da leoni… ruggisci, ma senza mordere a vuoto. 🦁",
             "Le stelle dicono: 'corri, ma non inciampare nei dubbi'. 🏃‍♂️",
-            "È il momento di dire sì… anche se la testa trema un po’. 👍",
-            "L’universo ti sta porgendo la mano… stringila forte. 🤝",
+            "È il momento di dire sì… anche se la testa trema un po'. 👍",
+            "L'universo ti sta porgendo la mano… stringila forte. 🤝",
             "Non pensare troppo… oggi conta il cuore. 💞",
             "Le stelle sono in modalità turbo… tieniti! 🚀",
             "Oggi puoi fare follie… ma con un pizzico di sale. 🧂",
@@ -302,26 +302,13 @@ const traduzioni = {
             "Non rimandare… il momento giusto è proprio ora. ⏰",
             "Le stelle ti stanno spingendo… non opporti. 💨",
             "Oggi è permesso sbagliare… purché lo fai con stile. 😎",
-            "L’energia è da urlo… usala per qualcosa di bello. 🎉",
-            "Il destino ti sta facendo l’occhiolino… non fare finta di non vedere. 😉",
+            "L'energia è da urlo… usala per qualcosa di bello. 🎉",
+            "Il destino ti sta facendo l'occhiolino… non fare finta di non vedere. 😉",
             "Oggi è permesso sognare in grande… e agire di conseguenza. 🌌",
-            "Le stelle dicono: 'corri, ma non inciampare nei dubbi'. 🏃",
-            "È il momento di dire sì… anche se la testa trema un po’. 👍",
-            "L’universo ti sta porgendo la mano… stringila forte. 🤝",
-            "Non pensare troppo… oggi conta il cuore. 💖",
-            "Le stelle sono in modalità turbo… tieniti! 🚀",
-            "Oggi puoi fare follie… ma con un pizzico di sale. 🧂",
-            "Il cosmo ti sta dando un via libera con luci al neon. 🌈",
-            "Non rimandare… il momento giusto è proprio ora. ⏰",
-            "Le stelle ti stanno spingendo… non opporti. 💨",
-            "Oggi è permesso sbagliare… purché lo fai con stile. 😎",
-            "L’energia è da urlo… usala per qualcosa di bello. 🎉",
-            "Il destino ti sta sorridendo… ricambia il sorriso. 😊",
-            "Oggi puoi fare follie… ma con un pizzico di sale. 🧂",
             "Le stelle dicono: 'vai, tanto domani si ricomincia'. 🌅",
             "Non avere paura di cadere… le stelle ti raccolgono. ⭐",
             "È il giorno giusto per provarci… senza rete di sicurezza. 🎢",
-            "L’universo ti sta dando il via… accelera! 🏎️",
+            "L'universo ti sta dando il via… accelera! 🏎️",
             "Oggi il cuore batte più forte della ragione… lascialo fare. 💓",
             "Le stelle sono tutte per te… non deludere il pubblico. 👏"
         ],
@@ -339,43 +326,15 @@ const traduzioni = {
             "Il diavolo ti sfida: libera le catene che ti trattengono, è ora di liberarti. ⛓️",
             "La morte (trasformazione) chiude un ciclo: lascia andare il vecchio per accogliere il nuovo. ⚰️",
             "La temperanza mescola le energie: equilibrio e pazienza saranno le tue alleate. ⚗️",
-            "Il diavolo e la stella insieme: tentazioni vs speranza… scegli la luce. ⭐",
             "Il mondo completa un ciclo: successo, realizzazione, chiusura felice in vista. 🌍",
             "La forza domata: hai più potere di quanto pensi, usalo con dolcezza. 🦁",
             "Il sole splende: un periodo luminoso sta arrivando, goditelo. ☀️",
-            "L’appeso ti chiede di cambiare prospettiva: ciò che sembra un blocco è un’opportunità. ⛓️",
-            "La ruota gira ancora: il destino è in movimento, resta aperto. 🎡",
-            "L’arcano senza nome: un cambiamento profondo è in corso, accoglilo. 🪦",
             "Il giudizio chiama: è tempo di lasciar andare il passato e rinascere. 📯",
-            "L’asso di coppe trabocca: nuove emozioni e relazioni stanno arrivando. 🏆",
-            "Il due di bastoni: una scelta tra due strade… quale senti più tua? 🛤️",
-            "Il tre di spade guarisce: il dolore sta passando, presto tornerà la pace. ❤️‍🩹",
-            "Il sei di denari: generosità e abbondanza circolano intorno a te. 💰",
-            "La regina di coppe ascolta: il cuore sa già la risposta. 👸",
-            "Il re di spade taglia: chiarezza e decisioni nette sono necessarie ora. ⚔️",
-            "L’otto di bastoni vola: le cose si muovono velocemente, tieniti pronto. 🚀",
-            "Il dieci di coppe sorride: armonia familiare e felicità sono possibili. 👨‍👩‍👧‍👦",
-            "Il cavaliere di coppe arriva: un messaggio romantico o creativo in arrivo. 🏇",
-            "La papessa custodisce un segreto: non tutto è come appare, osserva. 📖",
-            "L’Imperatore struttura: è tempo di mettere ordine e prendere autorità. 👑",
-            "La stella ti guida: speranza e ispirazione illuminano il cammino. ⭐",
-            "Il sole e la luna danzano: emozioni contrastanti, ma tutto si equilibrerà. ☀️🌙",
-            "Il matto salta: un nuovo inizio senza paura è dietro l’angolo. 🃏",
+            "Il matto salta: un nuovo inizio senza paura è dietro l'angolo. 🃏",
             "Il due di coppe unisce: una connessione profonda sta nascendo. 💞",
-            "Il cinque di denari passa: il periodo difficile sta finendo. 🌧️",
-            "Il sette di spade avverte: attenzione a chi parla alle tue spalle. 🗡️",
             "Il nove di coppe soddisfa: un desiderio sta per avverarsi. 🏆",
-            "L’ass di bastoni accende: nuova passione, nuovo progetto, nuova energia. 🔥",
             "Il tre di coppe festeggia: momenti di gioia con persone care in arrivo. 🎉",
-            "Il quattro di bastoni celebra: stabilità e casa felice si avvicinano. 🏡",
-            "Il sei di coppe ricorda: un ricordo dolce o una persona del passato torna. 🌸",
-            "Il cavaliere di denari avanza lento: pazienza, i risultati arrivano. 🐎",
-            "La forza e il leone: hai il coraggio per superare ogni ostacolo. 🦁",
-            "Il sole illumina tutto: un giorno di pura gioia è in arrivo. ☀️",
-            "Il mondo ti abbraccia: chiusura di un ciclo con successo e pace. 🌍",
-            "L’appeso si libera: ciò che sembrava fermo ora si sblocca. ⛓️",
-            "Il giudizio risveglia: è tempo di rinascere e lasciar andare il vecchio. 📯",
-            "Il due di spade bilancia: indecisione, ma la scelta giusta è vicina. ⚔️",
+            "La stella ti guida: speranza e ispirazione illuminano il cammino. ⭐",
             "Il quattro di coppe invita: non ignorare il dono che bussa alla porta. 🎁"
         ],
         frasiDivertenti: [
@@ -391,32 +350,20 @@ const traduzioni = {
             "Oggi le stelle sono in smart working… risposte lente e con emoji a caso. 🖥️",
             "Il cosmo ti guarda e pensa: 'ma questo/a ci prova davvero?' 🤨",
             "Mercurio retrogrado ha appena mandato un meme al gruppo zodiacale. 😂",
-            "Le stelle dicono: fai come vuoi… tanto domani cambio idea anch’io. 🤷",
+            "Le stelle dicono: fai come vuoi… tanto domani cambio idea anch'io. 🤷",
             "Saturno è in punizione: oggi niente karma, goditela! ⛓️",
-            "Urano ha appena fatto l’update del destino… ora è in versione beta. 🔄",
+            "Urano ha appena fatto l'update del destino… ora è in versione beta. 🔄",
             "Nettuno è ubriaco di sogni: non fidarti di quello che vedi oggi. 🌊",
             "Plutone sta facendo il reset del karma… attenzione ai bug! 🐛",
             "Le stelle hanno aperto TikTok: aspettati trend assurdi oggi. 📱",
             "Giove ha promesso mari e monti… ma ha dimenticato il budget. 💸",
             "La Luna è in fase 'teenager': risposte scontrose e porte sbattute. 🌙",
-            "Marte è andato in palestra… oggi tutti un po’ troppo aggressivi. 💪",
+            "Marte è andato in palestra… oggi tutti un po' troppo aggressivi. 💪",
             "Venere ha messo il filtro bellezza cosmico: tutti sembrano più belli oggi. ✨",
             "Saturno ha il blocco dello scrittore: niente lezioni di vita oggi. ✍️",
             "Mercurio ha perso le chiavi del pensiero razionale… buonanotte. 🔑",
-            "Le costellazioni stanno litigando su chi deve darti l’oroscopo oggi. 🤬",
-            "Il Sole è in vacanza: oggi è tutto un po’ spento, scusate. 🏖️",
-            "Urano ha cliccato 'non mi interessa più' sul tuo piano di vita. 🙅",
-            "Nettuno sta guardando Netflix invece di scrivere il tuo destino. 📺",
-            "Plutone ha fatto il detox dal tuo ex karma. 🧼",
-            "Giove ha aperto un mutuo cosmico: ora devi restituire gli anni buoni. 💳",
-            "La Luna è in modalità 'voglio tutto e subito'… calma. 😤",
-            "Marte ha bevuto troppi energy drink: impulsività garantita. ⚡",
-            "Venere sta flirtando con tutti i segni… gelosia cosmica in arrivo. 😈",
-            "Saturno ha messo il parental control sul divertimento. 🚫",
-            "Mercurio ha il 5G ma zero batteria… risposte lente. 🔋",
-            "Le costellazioni hanno aperto un gruppo WhatsApp… gossip cosmico. 📱",
-            "Il Sole ha messo le ferie: oggi è tutto un po’ spento, scusate. 🏖️",
-            "Urano ha cliccato 'non mi interessa più' sul tuo piano di vita. 🙅",
+            "Le costellazioni stanno litigando su chi deve darti l'oroscopo oggi. 🤬",
+            "Il Sole è in vacanza: oggi è tutto un po' spento, scusate. 🏖️",
             "Nettuno sta guardando Netflix invece di scrivere il tuo destino. 📺",
             "Plutone ha fatto il detox dal tuo ex karma. 🧼",
             "Giove ha promesso mari e monti… ma ha portato solo la sabbia. 🏜️"
@@ -466,33 +413,6 @@ const traduzioni = {
             "The universe is passing you the baton… run! 🏁",
             "If the heart says yes and the head says no… today the heart wins. ❤️",
             "It's a lion day… roar, but without biting in vain. 🦁",
-            "The stars say: 'run, but don't trip over doubts'. 🏃‍♂️",
-            "It's the time to say yes… even if the head trembles a bit. 👍",
-            "The universe is extending its hand… shake it firmly. 🤝",
-            "Don't think too much… today the heart counts. 💞",
-            "The stars are in turbo mode… hold on! 🚀",
-            "Today you can do crazy things… but with a pinch of salt. 🧂",
-            "The cosmos is giving you a green light with neon lights. 🌈",
-            "Don't postpone… the right moment is right now. ⏰",
-            "The stars are pushing you… don't resist. 💨",
-            "Today it's allowed to make mistakes… as long as you do it with style. 😎",
-            "The energy is screaming… use it for something beautiful. 🎉",
-            "Destiny is winking at you… don't pretend not to see. 😉",
-            "Today it's allowed to dream big… and act accordingly. 🌌",
-            "The stars say: 'run, but don't trip over doubts'. 🏃",
-            "It's the time to say yes… even if the head trembles a bit. 👍",
-            "The universe is extending its hand… shake it firmly. 🤝",
-            "Don't think too much… today the heart counts. 💖",
-            "The stars are in turbo mode… hold on! 🚀",
-            "Today you can do crazy things… but with a pinch of salt. 🧂",
-            "The cosmos is giving you a green light with neon lights. 🌈",
-            "Don't postpone… the right moment is right now. ⏰",
-            "The stars are pushing you… don't resist. 💨",
-            "Today it's allowed to make mistakes… as long as you do it with style. 😎",
-            "The energy is screaming… use it for something beautiful. 🎉",
-            "Destiny is smiling at you… return the smile. 😊",
-            "Today you can do crazy things… but with a pinch of salt. 🧂",
-            "The stars say: 'go, anyway tomorrow we start again'. 🌅",
             "Don't be afraid to fall… the stars will pick you up. ⭐",
             "It's the right day to try… without a safety net. 🎢",
             "The universe is giving you the go… accelerate! 🏎️",
@@ -510,46 +430,16 @@ const traduzioni = {
             "The hermit invites you to reflect: the answer is within you, take a moment. 🪔",
             "The lovers speak of important choices: listen to the heart, not just the head. ❤️",
             "Justice balances the scales: what you give will come back, karma in action. ⚖️",
-            "The devil challenges you: free the chains that hold you, it's time to free yourself. ⛓️",
             "Death (transformation) closes a cycle: let go of the old to welcome the new. ⚰️",
             "Temperance mixes energies: balance and patience will be your allies. ⚗️",
-            "The devil and the star together: temptations vs hope… choose the light. ⭐",
             "The world completes a cycle: success, fulfillment, happy closure in sight. 🌍",
-            "The tamed strength: you have more power than you think, use it gently. 🦁",
             "The sun shines: a bright period is coming, enjoy it. ☀️",
-            "The hanged man asks you to change perspective: what seems a block is an opportunity. ⛓️",
-            "The wheel turns again: destiny is in motion, stay open. 🎡",
-            "The nameless arcana: a deep change is underway, embrace it. 🪦",
             "Judgment calls: it's time to let go of the past and be reborn. 📯",
-            "The ace of cups overflows: new emotions and relationships are coming. 🏆",
-            "The two of wands: a choice between two paths… which one feels more yours? 🛤️",
-            "The three of swords heals: the pain is passing, peace will return soon. ❤️‍🩹",
-            "The six of pentacles: generosity and abundance circulate around you. 💰",
-            "The queen of cups listens: the heart already knows the answer. 👸",
-            "The king of swords cuts: clarity and sharp decisions are needed now. ⚔️",
-            "The eight of wands flies: things are moving fast, get ready. 🚀",
-            "The ten of cups smiles: family harmony and happiness are possible. 👨‍👩‍👧‍👦",
-            "The knight of cups arrives: a romantic or creative message is coming. 🏇",
-            "The high priestess guards a secret: not everything is as it appears, observe. 📖",
-            "The emperor structures: it's time to put order and take authority. 👑",
-            "The star guides you: hope and inspiration illuminate the path. ⭐",
-            "The sun and the moon dance: contrasting emotions, but everything will balance. ☀️🌙",
             "The fool jumps: a new beginning without fear is around the corner. 🃏",
             "The two of cups unites: a deep connection is being born. 💞",
-            "The five of pentacles passes: the difficult period is ending. 🌧️",
-            "The seven of swords warns: be careful of who speaks behind your back. 🗡️",
             "The nine of cups satisfies: a wish is about to come true. 🏆",
-            "The ace of wands ignites: new passion, new project, new energy. 🔥",
             "The three of cups celebrates: moments of joy with loved ones coming. 🎉",
-            "The four of wands celebrates: stability and happy home are approaching. 🏡",
-            "The six of cups remembers: a sweet memory or a person from the past returns. 🌸",
-            "The knight of pentacles advances slowly: patience, results are coming. 🐎",
-            "Strength and the lion: you have the courage to overcome every obstacle. 🦁",
-            "The sun illuminates everything: a day of pure joy is coming. ☀️",
-            "The world embraces you: closure of a cycle with success and peace. 🌍",
-            "The hanged man frees himself: what seemed stuck now unlocks. ⛓️",
-            "Judgment awakens: it's time to be reborn and let go of the old. 📯",
-            "The two of swords balances: indecision, but the right choice is near. ⚔️",
+            "The star guides you: hope and inspiration illuminate the path. ⭐",
             "The four of cups invites: don't ignore the gift knocking at the door. 🎁"
         ],
         frasiDivertenti: [
@@ -573,24 +463,6 @@ const traduzioni = {
             "The stars opened TikTok: expect absurd trends today. 📱",
             "Jupiter promised seas and mountains… but forgot the budget. 💸",
             "The Moon is in 'teenager' phase: grumpy responses and slammed doors. 🌙",
-            "Mars went to the gym… everyone a bit too aggressive today. 💪",
-            "Venus put on the cosmic beauty filter: everyone looks prettier today. ✨",
-            "Saturn has writer's block: no life lessons today. ✍️",
-            "Mercury lost the keys to rational thought… goodnight. 🔑",
-            "The constellations are arguing about who should give you the horoscope today. 🤬",
-            "The Sun is on vacation: everything is a bit dim today, sorry. 🏖️",
-            "Uranus clicked 'not interested anymore' on your life plan. 🙅",
-            "Neptune is watching Netflix instead of writing your destiny. 📺",
-            "Pluto did a detox from your ex karma. 🧼",
-            "Jupiter opened a cosmic mortgage: now you have to return the good years. 💳",
-            "The Moon is in 'I want everything now' mode… calm down. 😤",
-            "Mars drank too many energy drinks: impulsivity guaranteed. ⚡",
-            "Venus is flirting with all signs… cosmic jealousy coming. 😈",
-            "Saturn put parental control on fun. 🚫",
-            "Mercury has 5G but zero battery… slow responses. 🔋",
-            "The constellations opened a WhatsApp group… cosmic gossip. 📱",
-            "The Sun put on vacation: everything is a bit dim today, sorry. 🏖️",
-            "Uranus clicked 'not interested anymore' on your life plan. 🙅",
             "Neptune is watching Netflix instead of writing your destiny. 📺",
             "Pluto did a detox from your ex karma. 🧼",
             "Jupiter promised seas and mountains… but brought only sand. 🏜️"
@@ -601,26 +473,25 @@ const traduzioni = {
 // Funzione per rilevare lingua corrente
 function getLinguaCorrente() {
     const select = document.querySelector('.goog-te-combo');
-    let lingua = select ? select.value : 'it';
-    return traduzioni[lingua] ? lingua : 'it'; // fallback su IT se lingua non supportata
+    const lingua = select ? select.value : 'it';
+    return traduzioni[lingua] ? lingua : 'it';
 }
 
-// Funzione per aggiornare i testi delle domande nel select
+// Aggiorna testi domande nel select
 function updateDomandeSelect(lingua) {
     const select = document.getElementById('domanda');
     Array.from(select.options).forEach(option => {
         const key = option.value;
-        if (traduzioni[lingua].domande[key]) {
+        if (traduzioni[lingua] && traduzioni[lingua].domande[key]) {
             option.text = traduzioni[lingua].domande[key];
         }
     });
 }
 
-// Cache per oroscopo
+// Cache oroscopo
 function getCachedOroscopo(segno) {
     const key = `oroscopo_${segno}_${new Date().toDateString()}`;
-    const cached = localStorage.getItem(key);
-    return cached ? cached : null;
+    return localStorage.getItem(key) || null;
 }
 
 function setCachedOroscopo(segno, oroscopo) {
@@ -628,33 +499,29 @@ function setCachedOroscopo(segno, oroscopo) {
     localStorage.setItem(key, oroscopo);
 }
 
-// Condivisioni semplici
+// Condivisioni
 function shareOnX() {
     const text = "Hai chiesto alle stelle oggi? Scopri il tuo oroscopo divertente: " + window.location.href;
     window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text), "_blank");
 }
-
 function shareOnWhatsApp() {
     const text = "Hai chiesto alle stelle oggi? Guarda il mio oroscopo divertente: " + window.location.href;
     window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
 }
-
 function shareOnTelegram() {
     const text = "Hai chiesto alle stelle oggi? Guarda il mio oroscopo divertente: " + window.location.href;
     window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + encodeURIComponent(text), "_blank");
 }
-
 function shareOnFacebook() {
     const url = window.location.href;
     const text = "Hai chiesto alle stelle oggi? Guarda il mio oroscopo divertente!";
     window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&quote=" + encodeURIComponent(text), "_blank");
 }
 
-// Cambia testo e stile del bottone
+// Aggiorna bottone
 function aggiornaBottone() {
     const giorno = document.getElementById("giorno").value;
     const btn = document.getElementById("btn");
-    
     if (giorno === "tomorrow") {
         btn.textContent = "Consulta la sfera 🔮";
         btn.classList.add("cartomante");
@@ -664,18 +531,26 @@ function aggiornaBottone() {
     }
 }
 
-// Interpretazione per domanda
-function interpretaPerDomanda(oroscopo, domanda) {
-    const lingua = getLinguaCorrente();
-    const arr = traduzioni[lingua].risposteInterpretazione;
-    return arr[Math.floor(Math.random() * arr.length)];
+// Ri-trigger Google Translate sul contenuto dinamico
+function ritriggerTranslate() {
+    const select = document.querySelector('.goog-te-combo');
+    if (!select || !select.value || select.value === 'it') return;
+    const currentLang = select.value;
+    isRetriggering = true;
+    select.value = 'it';
+    select.dispatchEvent(new Event('change'));
+    setTimeout(() => {
+        select.value = currentLang;
+        select.dispatchEvent(new Event('change'));
+        setTimeout(() => { isRetriggering = false; }, 300);
+    }, 600);
 }
 
 // Funzione principale
 async function getOroscopo() {
     const segno = document.getElementById("segno").value;
     const giorno = document.getElementById("giorno").value;
-    const domandaKey = document.getElementById("domanda").value; // chiave, non testo
+    const domandaKey = document.getElementById("domanda").value;
     const rispostaDiv = document.getElementById("risposta");
     const loading = document.getElementById("loading");
 
@@ -688,7 +563,6 @@ async function getOroscopo() {
     try {
         if (giorno === "tomorrow") {
             const frase = t.cartomanteRisposte[Math.floor(Math.random() * t.cartomanteRisposte.length)];
-
             rispostaDiv.innerHTML = `
                 <h3>${t.headers.yourQuestion}</h3>
                 <p>${t.domande[domandaKey]}</p>
@@ -697,26 +571,19 @@ async function getOroscopo() {
             `;
         } else {
             let oroscopo = getCachedOroscopo(segno);
-
             if (!oroscopo) {
                 const apiUrl = `https://askingstars.vercel.app/api/ninjas-horoscope?zodiac=${segno}`;
-                console.log("Tentativo fetch:", apiUrl); // per debug in console
-
                 const res = await fetch(apiUrl);
-
                 if (!res.ok) {
                     const text = await res.text();
                     throw new Error(`Errore API: ${res.status} - ${text.substring(0, 200)}...`);
                 }
-
                 const data = await res.json();
                 oroscopo = data.horoscope || "The stars are a bit mysterious today...";
                 setCachedOroscopo(segno, oroscopo);
             }
-
             const fraseRandom = t.frasiDivertenti[Math.floor(Math.random() * t.frasiDivertenti.length)];
-            const interpretazione = interpretaPerDomanda(oroscopo, domandaKey);
-
+            const interpretazione = t.risposteInterpretazione[Math.floor(Math.random() * t.risposteInterpretazione.length)];
             rispostaDiv.innerHTML = `
                 <h3>${t.headers.yourQuestion}</h3>
                 <p>${t.domande[domandaKey]}</p>
@@ -731,48 +598,37 @@ async function getOroscopo() {
     } catch (error) {
         rispostaDiv.innerHTML = `
             <h3>${t.headers.error}</h3>
-            <p>${t.headers.starsConfused}<br>
-            (dettaglio: ${error.message})</p>
+            <p>${t.headers.starsConfused}<br>(dettaglio: ${error.message})</p>
         `;
         console.error("Errore:", error);
-   } finally {
-    loading.style.display = "none";
-    setTimeout(() => {
-        const select = document.querySelector('.goog-te-combo');
-        if (select && select.value && select.value !== 'it') {
-            const currentLang = select.value;
-            select.value = 'it';
-            select.dispatchEvent(new Event('change'));
-            setTimeout(() => {
-                select.value = currentLang;
-                select.dispatchEvent(new Event('change'));
-            }, 600);
-        }
-    }, 400);
+    } finally {
+        loading.style.display = "none";
+        // Ri-triggera Google Translate sul contenuto appena inserito
+        setTimeout(ritriggerTranslate, 400);
+    }
 }
 
-// Inizializza il bottone e listener per cambio lingua
+// Init
 document.addEventListener("DOMContentLoaded", () => {
     aggiornaBottone();
-    
-    // Flag per evitare loop
-    let isRetriggering = false;
 
-    // Listener per cambio lingua
-    const translateSelect = document.querySelector('.goog-te-combo');
-    if (translateSelect) {
-        translateSelect.addEventListener('change', () => {
-            if (isRetriggering)
-            const nuovaLingua = getLinguaCorrente();
-            updateDomandeSelect(nuovaLingua);
-            
-            // Se c'è già una risposta, rigenerala con nuova lingua
-            if (document.getElementById("risposta").innerHTML.trim() !== "") {
-                getOroscopo();
-            }
-        });
-    }
+    // Attende che Google Translate sia pronto prima di agganciare il listener
+    const waitForTranslate = setInterval(() => {
+        const translateSelect = document.querySelector('.goog-te-combo');
+        if (translateSelect) {
+            clearInterval(waitForTranslate);
+            translateSelect.addEventListener('change', () => {
+                if (isRetriggering) return; // ← blocca il loop
+                const nuovaLingua = getLinguaCorrente();
+                updateDomandeSelect(nuovaLingua);
+                if (document.getElementById("risposta").innerHTML.trim() !== "") {
+                    getOroscopo();
+                }
+            });
+        }
+    }, 300);
 });
+
 </script>
 
 </body>
