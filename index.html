@@ -242,24 +242,6 @@ function googleTranslateElementInit() {
         autoDisplay: true
     }, 'google_translate_element');
 }
-
-} finally {
-    loading.style.display = "none";
-
-    // Ri-triggera Google Translate sul contenuto appena inserito
-    setTimeout(() => {
-        const select = document.querySelector('.goog-te-combo');
-        if (select && select.value && select.value !== 'it') {
-            const currentLang = select.value;
-            select.value = 'it';
-            select.dispatchEvent(new Event('change'));
-            setTimeout(() => {
-                select.value = currentLang;
-                select.dispatchEvent(new Event('change'));
-            }, 600);
-        }
-    }, 400);
-}
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
@@ -753,19 +735,34 @@ async function getOroscopo() {
             (dettaglio: ${error.message})</p>
         `;
         console.error("Errore:", error);
-    } finally {
-        loading.style.display = "none";
-    }
+   } finally {
+    loading.style.display = "none";
+    setTimeout(() => {
+        const select = document.querySelector('.goog-te-combo');
+        if (select && select.value && select.value !== 'it') {
+            const currentLang = select.value;
+            select.value = 'it';
+            select.dispatchEvent(new Event('change'));
+            setTimeout(() => {
+                select.value = currentLang;
+                select.dispatchEvent(new Event('change'));
+            }, 600);
+        }
+    }, 400);
 }
 
 // Inizializza il bottone e listener per cambio lingua
 document.addEventListener("DOMContentLoaded", () => {
     aggiornaBottone();
     
+    // Flag per evitare loop
+    let isRetriggering = false;
+
     // Listener per cambio lingua
     const translateSelect = document.querySelector('.goog-te-combo');
     if (translateSelect) {
         translateSelect.addEventListener('change', () => {
+            if (isRetriggering)
             const nuovaLingua = getLinguaCorrente();
             updateDomandeSelect(nuovaLingua);
             
