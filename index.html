@@ -108,17 +108,34 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .support-section {
-            margin: 40px 0; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; margin: auto;
+        .support-text {
+            margin: 50px 0 40px;
+            text-align: center;
+            font-size: 1.05em;
+            color: #555;
         }
+        .support-link {
+            color: #0070ba;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .support-link:hover { text-decoration: underline; }
         .share-links {
-            margin: 20px 0; font-size: 1.1em;
+            margin: 20px 0;
+            font-size: 1.1em;
         }
         .share-links a {
-            margin: 0 16px; color: #ff69b4; text-decoration: none; font-weight: 500;
+            margin: 0 16px;
+            color: #ff69b4;
+            text-decoration: none;
+            font-weight: 500;
         }
         .share-links a:hover { color: #ff1493; }
-        footer { margin-top: 50px; font-size: 0.9em; color: #666; }
+        footer { 
+            margin-top: 50px; 
+            font-size: 0.9em;
+            color: #666; 
+        }
         #google_translate_element { margin-bottom: 20px; }
     </style>
 </head>
@@ -131,10 +148,10 @@
   </a>
 </div>    
     
-<h1 id="main-title">🌟 AskingStars – Oroscopo Q&A Divertente e Ironico 🌟</h1>
+<h1>🌟 AskingStars – Oroscopo Q&A Divertente e Ironico 🌟</h1>
 
-<h2 id="main-subtitle">🔮 Chiedi alle stelle o alla cartomante</h2>
-<p id="main-description">Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮</p>
+<h2>🔮 Chiedi alle stelle o alla cartomante</h2>
+<p>Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮</p>
 
 <!-- Selettore lingua manuale -->
 <div id="lang-selector" style="margin-bottom:10px;">
@@ -148,34 +165,60 @@
         <option value="pt">🇵🇹 Português</option>
     </select>
 </div>
-<div id="google_translate_element"></div>
+<div id="google_translate_element" style="display:none;"></div>
 
 <form id="form">
-    <label for="segno" id="label-segno">Il tuo segno zodiacale:</label>
-    <select id="segno"></select>
+    <label for="segno">Il tuo segno zodiacale:</label>
+    <select id="segno">
+        <option value="aries">Ariete ♈</option>
+        <option value="taurus">Toro ♉</option>
+        <option value="gemini">Gemelli ♊</option>
+        <option value="cancer">Cancro ♋</option>
+        <option value="leo">Leone ♌</option>
+        <option value="virgo">Vergine ♍</option>
+        <option value="libra">Bilancia ♎</option>
+        <option value="scorpio">Scorpione ♏</option>
+        <option value="sagittarius">Sagittario ♐</option>
+        <option value="capricorn">Capricorno ♑</option>
+        <option value="aquarius">Acquario ♒</option>
+        <option value="pisces">Pesci ♓</option>
+    </select>
 
-    <label for="giorno" id="label-giorno">Quando vuoi sapere:</label>
-    <select id="giorno" onchange="aggiornaBottone()"></select>
+    <label for="giorno">Quando vuoi sapere:</label>
+    <select id="giorno" onchange="aggiornaBottone()">
+        <option value="today">Oggi 🌞</option>
+        <option value="tomorrow">Chiedi alla cartomante 🔮</option>
+    </select>
 
-    <label for="domanda" id="label-domanda">Scegli una domanda:</label>
-    <select id="domanda"></select>
+    <label for="domanda">Scegli una domanda:</label>
+    <select id="domanda">
+        <option value="getQuestioned">Devo farmi interrogare?</option>
+        <option value="luckInLove">Avrò fortuna in amore oggi?</option>
+        <option value="goodDayTravel">È un buon giorno per viaggiare?</option>
+        <option value="riskAtWork">Dovrei rischiare al lavoro?</option>
+        <option value="healthToday">Come andrà la mia salute oggi?</option>
+        <option value="financialSurprises">Avrò sorprese finanziarie?</option>
+        <option value="makePeaceFriend">È il momento giusto per fare pace con un amico?</option>
+        <option value="startHobby">Dovrei iniziare un nuovo hobby?</option>
+        <option value="energyToday">Che energia avrò oggi?</option>
+    </select>
 
     <button type="button" id="btn" onclick="getOroscopo()">Chiedi alle stelle 🌟</button>
 </form>
 
-<div id="loading" id="loading-text">Sto consultando le stelle... <div class="spinner"></div></div>
+<div id="loading">Sto consultando le stelle... <div class="spinner"></div></div>
 <div id="risposta"></div>
 
-<div class="support-section">
-  <h2 id="support-title">Supporta AskingStars 🌟</h2>
-  <p id="support-description">Se AskingStars ti diverte o ti è utile, aiutami a mantenerlo gratuito e a svilupparlo full-time!</p>
+<div class="support-section" style="margin: 40px 0; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; margin: auto;">
+  <h2>Supporta AskingStars 🌟</h2>
+  <p>Se AskingStars ti diverte o ti è utile, aiutami a mantenerlo gratuito e a svilupparlo full-time!</p>
   <p>
-    <a href="https://paypal.me/onlycreator" style="background: #ff69b4; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold;" id="dona-button">Dona con PayPal</a><br>
+    <a href="https://paypal.me/onlycreator" style="background: #ff69b4; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold;">Dona con PayPal</a><br>
   </p>
 </div>
 
 <div class="share-links">
-    <h3 id="share-title">Condividi con i tuoi amici</h3>
+    <h3>Condividi con i tuoi amici</h3>
     <a href="#" onclick="shareOnX()">X</a>  
     <a href="#" onclick="shareOnWhatsApp()">WhatsApp</a>  
     <a href="#" onclick="shareOnTelegram()">Telegram</a>
@@ -183,13 +226,13 @@
 </div>
 
 <footer>
-    <p id="footer-text"> AskingStars.com e i suoi contenuti © Alessandro Memmola 2026 – Tutti i diritti riservati.<br>
+    <p> AskingStars.com e i suoi contenuti © Alessandro Memmola 2026 – Tutti i diritti riservati.<br>
     Widget AskingStars: gratuito per embed su qualsiasi sito (personale o commerciale).<br>    
     <a href="/licenza" target="_blank">Leggi la licenza completa (sito + widget)</a> •
     <a href="/widget-demo.html">Prova il Widget Gratuito</a> •
     <a href="https://paypal.me/onlycreator">Dona ❤️</a>
     Questo sito non raccoglie dati personali identificativi né utilizza cookie di profilazione    
-    <p id="footer-links">
+    <p>
         <a href="https://alessandromemmola.com">Sito personale</a> · 
         <a href="https://github.com/alessandromemmola">GitHub</a> · 
         <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · 
@@ -215,140 +258,128 @@ function googleTranslateElementInit() {
 // Flag globale per evitare loop nel ri-trigger
 let isRetriggering = false;
 
-// Array di traduzioni esteso per tutte le parti statiche
+// Array di traduzioni (IT/EN)
 const traduzioni = {
     it: {
-        // Parti statiche
-        mainTitle: '🌟 AskingStars – Oroscopo Q&A Divertente e Ironico 🌟',
-        mainSubtitle: '🔮 Chiedi alle stelle o alla cartomante',
-        mainDescription: 'Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮',
-        labelSegno: 'Il tuo segno zodiacale:',
-        labelGiorno: 'Quando vuoi sapere:',
-        labelDomanda: 'Scegli una domanda:',
-        supportTitle: 'Supporta AskingStars 🌟',
-        supportDescription: 'Se AskingStars ti diverte o ti è utile, aiutami a mantenerlo gratuito e a svilupparlo full-time!',
-        donaButton: 'Dona con PayPal',
-        shareTitle: 'Condividi con i tuoi amici',
-        footerText: 'AskingStars.com e i suoi contenuti © Alessandro Memmola 2026 – Tutti i diritti riservati.<br>Widget AskingStars: gratuito per embed su qualsiasi sito (personale o commerciale).<br>',
-        footerLinks: '<a href="https://alessandromemmola.com">Sito personale</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
-        loadingText: 'Sto consultando le stelle...',
-        supportBanner: 'GitHub Sponsors in attesa di approvazione – supportami intanto su PayPal.me! 🌟',
-        donaBanner: 'Dona ora ❤️',
-        domande: { /* ... come prima */ },
-        headers: { /* ... come prima */ },
-        risposteInterpretazione: { /* ... come prima */ },
-        cartomanteRisposte: { /* ... come prima */ },
-        frasiDivertenti: { /* ... come prima */ }
-    },
-    en: {
-        mainTitle: '🌟 AskingStars – Fun and Ironic Horoscope Q&A 🌟',
-        mainSubtitle: '🔮 Ask the stars or the fortune teller',
-        mainDescription: 'Interactive and fun Horoscope Q&A: ask the stars or the fortune teller for personalized, ironic and unfiltered answers. 🌟🔮',
-        labelSegno: 'Your zodiac sign:',
-        labelGiorno: 'When do you want to know:',
-        labelDomanda: 'Choose a question:',
-        supportTitle: 'Support AskingStars 🌟',
-        supportDescription: 'If AskingStars entertains or helps you, help me keep it free and develop it full-time!',
-        donaButton: 'Donate with PayPal',
-        shareTitle: 'Share with your friends',
-        footerText: 'AskingStars.com and its contents © Alessandro Memmola 2026 – All rights reserved.<br>Widget AskingStars: free for embed on any site (personal or commercial).<br>',
-        footerLinks: '<a href="https://alessandromemmola.com">Personal site</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
-        loadingText: 'Consulting the stars...',
-        supportBanner: 'GitHub Sponsors pending approval – support me meanwhile on PayPal.me! 🌟',
-        donaBanner: 'Donate now ❤️',
-        domande: { /* ... come prima */ },
-        headers: { /* ... come prima */ },
-        risposteInterpretazione: { /* ... come prima */ },
-        cartomanteRisposte: { /* ... come prima */ },
-        frasiDivertenti: { /* ... come prima */ }
-    },
-    fr: {
-        mainTitle: '🌟 AskingStars – Horoscope Q&A Amusant et Ironique 🌟',
-        mainSubtitle: '🔮 Demandez aux étoiles ou à la voyante',
-        mainDescription: 'Horoscope Q&A interactif et amusant : demandez aux étoiles ou à la voyante des réponses personnalisées, ironiques et sans filtre. 🌟🔮',
-        labelSegno: 'Votre signe zodiacal:',
-        labelGiorno: 'Quand voulez-vous savoir:',
-        labelDomanda: 'Choisissez une question:',
-        supportTitle: 'Soutenez AskingStars 🌟',
-        supportDescription: 'Si AskingStars vous amuse ou vous est utile, aidez-moi à le maintenir gratuit et à le développer à temps plein!',
-        donaButton: 'Donner avec PayPal',
-        shareTitle: 'Partagez avec vos amis',
-        footerText: 'AskingStars.com et ses contenus © Alessandro Memmola 2026 – Tous droits réservés.<br>Widget AskingStars: gratuit pour embed sur n’importe quel site (personnel ou commercial).<br>',
-        footerLinks: '<a href="https://alessandromemmola.com">Site personnel</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
-        loadingText: 'Consultation des étoiles...',
-        supportBanner: 'GitHub Sponsors en attente d’approbation – soutenez-moi entretemps sur PayPal.me! 🌟',
-        donaBanner: 'Donner maintenant ❤️',
-        domande: { /* ... come prima */ },
-        headers: { /* ... come prima */ },
-        risposteInterpretazione: { /* ... come prima */ },
-        cartomanteRisposte: { /* ... come prima */ },
-        frasiDivertenti: { /* ... come prima */ }
-    },
-    es: {
-        mainTitle: '🌟 AskingStars – Horóscopo Q&A Divertido e Irónico 🌟',
-        mainSubtitle: '🔮 Pregunta a las estrellas o a la adivina',
-        mainDescription: 'Horóscopo Q&A interactivo y divertido: pregunta a las estrellas o a la adivina respuestas personalizadas, irónicas y sin filtros. 🌟🔮',
-        labelSegno: 'Tu signo zodiacal:',
-        labelGiorno: 'Cuándo quieres saber:',
-        labelDomanda: 'Elige una pregunta:',
-        supportTitle: 'Apoya AskingStars 🌟',
-        supportDescription: 'Si AskingStars te divierte o te es útil, ayúdame a mantenerlo gratuito y desarrollarlo full-time!',
-        donaButton: 'Donar con PayPal',
-        shareTitle: 'Comparte con tus amigos',
-        footerText: 'AskingStars.com y sus contenidos © Alessandro Memmola 2026 – Todos los derechos reservados.<br>Widget AskingStars: gratuito para embed en cualquier sitio (personal o comercial).<br>',
-        footerLinks: '<a href="https://alessandromemmola.com">Sitio personal</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
-        loadingText: 'Consultando las estrellas...',
-        supportBanner: 'GitHub Sponsors pendiente aprobación – apóyame mientras tanto en PayPal.me! 🌟',
-        donaBanner: 'Donar ahora ❤️',
-        domande: { /* ... come prima */ },
-        headers: { /* ... come prima */ },
-        risposteInterpretazione: { /* ... come prima */ },
-        cartomanteRisposte: { /* ... come prima */ },
-        frasiDivertenti: { /* ... come prima */ }
-    },
-    de: {
-        mainTitle: '🌟 AskingStars – Lustiges und Ironisches Horoskop Q&A 🌟',
-        mainSubtitle: '🔮 Frage die Sterne oder die Wahrsagerin',
-        mainDescription: 'Interaktives und lustiges Horoskop Q&A: frage die Sterne oder die Wahrsagerin nach personalisierten, ironischen und unfilterten Antworten. 🌟🔮',
-        labelSegno: 'Dein Sternzeichen:',
-        labelGiorno: 'Wann möchtest du wissen:',
-        labelDomanda: 'Wähle eine Frage:',
-        supportTitle: 'Unterstütze AskingStars 🌟',
-        supportDescription: 'Wenn AskingStars dich unterhält oder nützlich ist, hilf mir, es kostenlos zu halten und full-time zu entwickeln!',
-        donaButton: 'Spenden mit PayPal',
-        shareTitle: 'Teile mit deinen Freunden',
-        footerText: 'AskingStars.com und seine Inhalte © Alessandro Memmola 2026 – Alle Rechte vorbehalten.<br>Widget AskingStars: kostenlos für Embed auf jeder Site (persönlich oder kommerziell).<br>',
-        footerLinks: '<a href="https://alessandromemmola.com">Persönliche Site</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
-        loadingText: 'Beratung der Sterne...',
-        supportBanner: 'GitHub Sponsors wartet auf Genehmigung – unterstütze mich inzwischen auf PayPal.me! 🌟',
-        donaBanner: 'Jetzt spenden ❤️',
-        domande: { /* ... come prima */ },
-        headers: { /* ... come prima */ },
-        risposteInterpretazione: { /* ... come prima */ },
-        cartomanteRisposte: { /* ... come prima */ },
-        frasiDivertenti: { /* ... come prima */ }
-    },
-    pt: {
-        mainTitle: '🌟 AskingStars – Horóscopo Q&A Divertido e Irônico 🌟',
-        mainSubtitle: '🔮 Pergunte às estrelas ou à cartomante',
-        mainDescription: 'Horóscopo Q&A interativo e divertido: pergunte às estrelas ou à cartomante respostas personalizadas, irônicas e sem filtros. 🌟🔮',
-        labelSegno: 'Seu signo zodiacal:',
-        labelGiorno: 'Quando quer saber:',
-        labelDomanda: 'Escolha uma pergunta:',
-        supportTitle: 'Apoie AskingStars 🌟',
-        supportDescription: 'Se AskingStars te diverte ou é útil, ajude-me a mantê-lo gratuito e desenvolvê-lo full-time!',
-        donaButton: 'Doar com PayPal',
-        shareTitle: 'Compartilhe com seus amigos',
-        footerText: 'AskingStars.com e seus conteúdos © Alessandro Memmola 2026 – Todos os direitos reservados.<br>Widget AskingStars: gratuito para embed em qualquer site (pessoal ou comercial).<br>',
-        footerLinks: '<a href="https://alessandromemmola.com">Site pessoal</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
-        loadingText: 'Consultando as estrelas...',
-        supportBanner: 'GitHub Sponsors aguardando aprovação – apoie-me enquanto isso no PayPal.me! 🌟',
-        donaBanner: 'Doe agora ❤️',
-        domande: { /* ... come prima */ },
-        headers: { /* ... come prima */ },
-        risposteInterpretazione: { /* ... come prima */ },
-        cartomanteRisposte: { /* ... come prima */ },
-        frasiDivertenti: { /* ... come prima */ }
+        domande: {
+            getQuestioned: "Devo farmi interrogare?",
+            luckInLove: "Avrò fortuna in amore oggi?",
+            goodDayTravel: "È un buon giorno per viaggiare?",
+            riskAtWork: "Dovrei rischiare al lavoro?",
+            healthToday: "Come andrà la mia salute oggi?",
+            financialSurprises: "Avrò sorprese finanziarie?",
+            makePeaceFriend: "È il momento giusto per fare pace con un amico?",
+            startHobby: "Dovrei iniziare un nuovo hobby?",
+            energyToday: "Che energia avrò oggi?"
+        },
+        headers: {
+            yourQuestion: "La tua domanda",
+            fortuneTellerSees: "La cartomante vede",
+            todaysHoroscope: "Oroscopo di oggi",
+            interpretation: "Interpretazione per la tua domanda",
+            funnyReply: "Risposta divertente",
+            error: "Errore 🌙",
+            starsConfused: "Le stelle sono un po' confuse oggi… riprova tra poco"
+        },
+        risposteInterpretazione: [
+            "Le stelle ti dicono di buttarti… ma con il paracadute emotivo pronto! 🚀",
+            "Attenzione: l'energia è alta, ma il buonsenso deve restare al volante. 🛑",
+            "Oggi è il giorno giusto per osare… o almeno per provarci con stile. 💥",
+            "Il cosmo ti sussurra: 'fai un passo, ma guarda dove metti i piedi'. 👣",
+            "Se senti il cuore battere forte… è perché le stelle stanno applaudendo. 👏",
+            "Non forzare nulla… ma non lasciare che la paura ti tenga fermo/a. ❤️",
+            "L'universo ti sta dando un calcio nel sedere… gentilmente. 👟",
+            "È un giorno da 'provo e vedo', ma con un piano B in tasca. 🗺️",
+            "Le stelle ti consigliano coraggio… e un buon caffè prima. ☕",
+            "Oggi l'intuito è al massimo… fidati, anche se sembra folle. 🧠",
+            "Non è il momento di ragionare troppo… lascia parlare il cuore. 💖",
+            "L'energia è elettrica: usala bene o rischi di fulminarti da solo/a! ⚡",
+            "Le stelle dicono sì… ma con moderazione e un pizzico di sale. 🧂",
+            "È il giorno perfetto per rischiare… o almeno per fantasticare ad alta voce. 🎤",
+            "Attenzione a non inciampare nei tuoi stessi sogni. 💭",
+            "Il cosmo ti guarda e dice: 'dai, muoviti, non fare il timido/a!' 🏃",
+            "Oggi puoi fare scintille… ma non incendiare tutto! 🔥",
+            "Le stelle sono dalla tua parte… ma pretendono impegno. 🤝",
+            "Non aspettare il momento perfetto… crealo tu oggi. ✂️",
+            "L'universo ti sta passando il testimone… corri! 🏁",
+            "Se il cuore dice sì e la testa dice no… oggi vince il cuore. ❤️",
+            "È un giorno da leoni… ruggisci, ma senza mordere a vuoto. 🦁",
+            "Le stelle dicono: 'corri, ma non inciampare nei dubbi'. 🏃‍♂️",
+            "È il momento di dire sì… anche se la testa trema un po'. 👍",
+            "L'universo ti sta porgendo la mano… stringila forte. 🤝",
+            "Non pensare troppo… oggi conta il cuore. 💞",
+            "Le stelle sono in modalità turbo… tieniti! 🚀",
+            "Oggi puoi fare follie… ma con un pizzico di sale. 🧂",
+            "Il cosmo ti sta dando un via libera con luci al neon. 🌈",
+            "Non rimandare… il momento giusto è proprio ora. ⏰",
+            "Le stelle ti stanno spingendo… non opporti. 💨",
+            "Oggi è permesso sbagliare… purché lo fai con stile. 😎",
+            "L'energia è da urlo… usala per qualcosa di bello. 🎉",
+            "Il destino ti sta facendo l'occhiolino… non fare finta di non vedere. 😉",
+            "Oggi è permesso sognare in grande… e agire di conseguenza. 🌌",
+            "Le stelle dicono: 'vai, tanto domani si ricomincia'. 🌅",
+            "Non avere paura di cadere… le stelle ti raccolgono. ⭐",
+            "È il giorno giusto per provarci… senza rete di sicurezza. 🎢",
+            "L'universo ti sta dando il via… accelera! 🏎️",
+            "Oggi il cuore batte più forte della ragione… lascialo fare. 💓",
+            "Le stelle sono tutte per te… non deludere il pubblico. 👏"
+        ],
+        cartomanteRisposte: [
+            "Le carte sussurrano: una svolta inaspettata è vicina… fidati del tuo istinto. 🔮",
+            "La torre e il sole insieme: cambiamenti improvvisi porteranno luce e chiarezza. 🌞",
+            "La luna piena illumina un segreto… ascolta i sogni stanotte. 🌕",
+            "Il carro avanza: è tempo di prendere in mano le redini con decisione. 🏇",
+            "L'imperatrice sorride: creatività e abbondanza sono in arrivo, coltiva ciò che ami. 👑",
+            "Il mago ti ricorda: hai già tutti gli strumenti, usali con fiducia. 🎩",
+            "La ruota della fortuna gira a tuo favore… preparati a una sorpresa positiva. 🎡",
+            "L'eremita ti invita a riflettere: la risposta è dentro di te, prenditi un momento. 🪔",
+            "Gli amanti ti parlano di scelte importanti: ascolta il cuore, non solo la testa. ❤️",
+            "La giustizia bilancia la bilancia: ciò che dai tornerà indietro, karma in azione. ⚖️",
+            "Il diavolo ti sfida: libera le catene che ti trattengono, è ora di liberarti. ⛓️",
+            "La morte (trasformazione) chiude un ciclo: lascia andare il vecchio per accogliere il nuovo. ⚰️",
+            "La temperanza mescola le energie: equilibrio e pazienza saranno le tue alleate. ⚗️",
+            "Il mondo completa un ciclo: successo, realizzazione, chiusura felice in vista. 🌍",
+            "La forza domata: hai più potere di quanto pensi, usalo con dolcezza. 🦁",
+            "Il sole splende: un periodo luminoso sta arrivando, goditelo. ☀️",
+            "Il giudizio chiama: è tempo di lasciar andare il passato e rinascere. 📯",
+            "Il matto salta: un nuovo inizio senza paura è dietro l'angolo. 🃏",
+            "Il due di coppe unisce: una connessione profonda sta nascendo. 💞",
+            "Il nove di coppe soddisfa: un desiderio sta per avverarsi. 🏆",
+            "Il tre di coppe festeggia: momenti di gioia con persone care in arrivo. 🎉",
+            "La stella ti guida: speranza e ispirazione illuminano il cammino. ⭐",
+            "Il quattro di coppe invita: non ignorare il dono che bussa alla porta. 🎁"
+        ],
+        frasiDivertenti: [
+            "Quindi, secondo le stelle... ma l'universo ha sempre un pizzico di ironia! 😏",
+            "Le stelle dicono: ... e se non funziona, incolpa Mercurio retrogrado! ☿",
+            "Risposta cosmica: ... ma non giocartela tutta in una volta! 🎲",
+            "Le stelle bisbigliano: ... ascolta il tuo istinto, loro oggi sono un po' svogliate! 😴",
+            "Dalle costellazioni: ... almeno non grandina meteoriti oggi! ☄️",
+            "Consiglio stellare: ... e se sbagli, dai la colpa a Venere in ferie! ♀️",
+            "Le stelle hanno mandato un vocale di 3 minuti… ma era in retrograde! 🎤",
+            "Oroscopo di oggi: respira profondamente… e incolpa Giove se sbagli lo stesso. ♃",
+            "Attenzione: Venere è in modalità ghosting, non aspettarti risposte chiare! 👻",
+            "Oggi le stelle sono in smart working… risposte lente e con emoji a caso. 🖥️",
+            "Il cosmo ti guarda e pensa: 'ma questo/a ci prova davvero?' 🤨",
+            "Mercurio retrogrado ha appena mandato un meme al gruppo zodiacale. 😂",
+            "Le stelle dicono: fai come vuoi… tanto domani cambio idea anch'io. 🤷",
+            "Saturno è in punizione: oggi niente karma, goditela! ⛓️",
+            "Urano ha appena fatto l'update del destino… ora è in versione beta. 🔄",
+            "Nettuno è ubriaco di sogni: non fidarti di quello che vedi oggi. 🌊",
+            "Plutone sta facendo il reset del karma… attenzione ai bug! 🐛",
+            "Le stelle hanno aperto TikTok: aspettati trend assurdi oggi. 📱",
+            "Giove ha promesso mari e monti… ma ha dimenticato il budget. 💸",
+            "La Luna è in fase 'teenager': risposte scontrose e porte sbattute. 🌙",
+            "Marte è andato in palestra… oggi tutti un po' troppo aggressivi. 💪",
+            "Venere ha messo il filtro bellezza cosmico: tutti sembrano più belli oggi. ✨",
+            "Saturno ha il blocco dello scrittore: niente lezioni di vita oggi. ✍️",
+            "Mercurio ha perso le chiavi del pensiero razionale… buonanotte. 🔑",
+            "Le costellazioni stanno litigando su chi deve darti l'oroscopo oggi. 🤬",
+            "Il Sole è in vacanza: oggi è tutto un po' spento, scusate. 🏖️",
+            "Nettuno sta guardando Netflix invece di scrivere il tuo destino. 📺",
+            "Plutone ha fatto il detox dal tuo ex karma. 🧼",
+            "Giove ha promesso mari e monti… ma ha portato solo la sabbia. 🏜️"
+        ]
     }
 };
 
@@ -357,50 +388,197 @@ let linguaAttiva = 'it';
 
 function cambiaLinguaManuale(lingua) {
     linguaAttiva = lingua;
-    const t = traduzioni[linguaAttiva];
-
-    // Aggiorna testi statici
-    document.getElementById('main-title').textContent = t.mainTitle;
-    document.getElementById('main-subtitle').textContent = t.mainSubtitle;
-    document.getElementById('main-description').textContent = t.mainDescription;
-    document.getElementById('label-segno').textContent = t.labelSegno;
-    document.getElementById('label-giorno').textContent = t.labelGiorno;
-    document.getElementById('label-domanda').textContent = t.labelDomanda;
-    document.getElementById('support-title').textContent = t.supportTitle;
-    document.getElementById('support-description').textContent = t.supportDescription;
-    document.getElementById('dona-button').textContent = t.donaButton;
-    document.getElementById('share-title').textContent = t.shareTitle;
-    document.getElementById('footer-text').innerHTML = t.footerText;
-    document.getElementById('footer-links').innerHTML = t.footerLinks;
-    document.getElementById('loading-text').textContent = t.loadingText;
-    document.getElementById('support-banner').querySelector('span').textContent = t.supportBanner;
-    document.getElementById('support-banner').querySelector('a').textContent = t.donaBanner;
-
-    // Aggiorna select dinamici
     updateDomandeSelect(linguaAttiva);
     updateSegnoSelect(linguaAttiva);
     updateGiornoSelect(linguaAttiva);
 
-    // Triggera Google Translate per altre parti
+    // Triggera anche Google Translate per titoli, testi statici e footer
     const gtSelect = document.querySelector('.goog-te-combo');
     if (gtSelect) {
-        gtSelect.value = linguaAttiva;
+        gtSelect.value = lingua;
         gtSelect.dispatchEvent(new Event('change'));
     }
 
-    // Se risposta già presente, ricarica per applicare
     if (document.getElementById("risposta").innerHTML.trim() !== "") {
         getOroscopo();
     }
 }
 
-// Funzioni update select come prima
+// Funzione per rilevare lingua corrente
+function getLinguaCorrente() {
+    return linguaAttiva;
+}
 
-// Cache, condivisioni, aggiornaBottone, ritriggerTranslate, getOroscopo come prima
+// Aggiorna testi domande nel select
+function updateDomandeSelect(lingua) {
+    const select = document.getElementById('domanda');
+    Array.from(select.options).forEach(option => {
+        const key = option.value;
+        if (traduzioni[lingua] && traduzioni[lingua].domande[key]) {
+            option.text = traduzioni[lingua].domande[key];
+        }
+    });
+}
+
+// Aggiorna testi segni nel select
+function updateSegnoSelect(lingua) {
+    const nomiIt = {
+        aries:'Ariete ♈', taurus:'Toro ♉', gemini:'Gemelli ♊', cancer:'Cancro ♋',
+        leo:'Leone ♌', virgo:'Vergine ♍', libra:'Bilancia ♎', scorpio:'Scorpione ♏',
+        sagittarius:'Sagittario ♐', capricorn:'Capricorno ♑', aquarius:'Acquario ♒', pisces:'Pesci ♓'
+    };
+    const nomiEn = {
+        aries:'Aries ♈', taurus:'Taurus ♉', gemini:'Gemini ♊', cancer:'Cancer ♋',
+        leo:'Leo ♌', virgo:'Virgo ♍', libra:'Libra ♎', scorpio:'Scorpio ♏',
+        sagittarius:'Sagittarius ♐', capricorn:'Capricorn ♑', aquarius:'Aquarius ♒', pisces:'Pisces ♓'
+    };
+    const nomi = lingua === 'en' ? nomiEn : nomiIt;
+    const select = document.getElementById('segno');
+    Array.from(select.options).forEach(option => {
+        if (nomi[option.value]) option.text = nomi[option.value];
+    });
+}
+
+// Aggiorna testi giorno nel select
+function updateGiornoSelect(lingua) {
+    const testi = {
+        it: { today: 'Oggi 🌞', tomorrow: 'Chiedi alla cartomante 🔮' },
+        en: { today: 'Today 🌞', tomorrow: 'Ask the fortune teller 🔮' },
+        fr: { today: "Aujourd'hui 🌞", tomorrow: 'Demandez à la voyante 🔮' },
+        es: { today: 'Hoy 🌞', tomorrow: 'Pregunta a la vidente 🔮' },
+        de: { today: 'Heute 🌞', tomorrow: 'Frag die Wahrsagerin 🔮' },
+        pt: { today: 'Hoje 🌞', tomorrow: 'Pergunte à vidente 🔮' }
+    };
+    const t = testi[lingua] || testi['it'];
+    const select = document.getElementById('giorno');
+    Array.from(select.options).forEach(option => {
+        if (t[option.value]) option.text = t[option.value];
+    });
+}
+
+// Cache oroscopo
+function getCachedOroscopo(segno) {
+    const key = `oroscopo_${segno}_${new Date().toDateString()}`;
+    return localStorage.getItem(key) || null;
+}
+
+function setCachedOroscopo(segno, oroscopo) {
+    const key = `oroscopo_${segno}_${new Date().toDateString()}`;
+    localStorage.setItem(key, oroscopo);
+}
+
+// Condivisioni
+function shareOnX() {
+    const text = "Hai chiesto alle stelle oggi? Scopri il tuo oroscopo divertente: " + window.location.href;
+    window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text), "_blank");
+}
+function shareOnWhatsApp() {
+    const text = "Hai chiesto alle stelle oggi? Guarda il mio oroscopo divertente: " + window.location.href;
+    window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+}
+function shareOnTelegram() {
+    const text = "Hai chiesto alle stelle oggi? Guarda il mio oroscopo divertente: " + window.location.href;
+    window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + encodeURIComponent(text), "_blank");
+}
+function shareOnFacebook() {
+    const url = window.location.href;
+    const text = "Hai chiesto alle stelle oggi? Guarda il mio oroscopo divertente!";
+    window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&quote=" + encodeURIComponent(text), "_blank");
+}
+
+// Aggiorna bottone
+function aggiornaBottone() {
+    const giorno = document.getElementById("giorno").value;
+    const btn = document.getElementById("btn");
+    if (giorno === "tomorrow") {
+        btn.textContent = "Consulta la sfera 🔮";
+        btn.classList.add("cartomante");
+    } else {
+        btn.textContent = "Chiedi alle stelle 🌟";
+        btn.classList.remove("cartomante");
+    }
+}
+
+// Ri-trigger Google Translate sul contenuto dinamico
+function ritriggerTranslate() {
+    const select = document.querySelector('.goog-te-combo');
+    if (!select || !select.value || select.value === 'it') return;
+    const currentLang = select.value;
+    isRetriggering = true;
+    select.value = 'it';
+    select.dispatchEvent(new Event('change'));
+    setTimeout(() => {
+        select.value = currentLang;
+        select.dispatchEvent(new Event('change'));
+        setTimeout(() => { isRetriggering = false; }, 300);
+    }, 600);
+}
+
+// Funzione principale
+async function getOroscopo() {
+    const segno = document.getElementById("segno").value;
+    const giorno = document.getElementById("giorno").value;
+    const domandaKey = document.getElementById("domanda").value;
+    const rispostaDiv = document.getElementById("risposta");
+    const loading = document.getElementById("loading");
+
+    rispostaDiv.innerHTML = "";
+    loading.style.display = "block";
+
+    const lingua = getLinguaCorrente();
+    const t = traduzioni[lingua];
+
+    try {
+        if (giorno === "tomorrow") {
+            const frase = t.cartomanteRisposte[Math.floor(Math.random() * t.cartomanteRisposte.length)];
+            rispostaDiv.innerHTML = `
+                <h3>${t.headers.yourQuestion}</h3>
+                <p>${t.domande[domandaKey]}</p>
+                <h3>${t.headers.fortuneTellerSees}</h3>
+                <p>${frase}</p>
+            `;
+        } else {
+            let oroscopo = getCachedOroscopo(segno);
+            if (!oroscopo) {
+                const apiUrl = `https://askingstars.vercel.app/api/ninjas-horoscope?zodiac=${segno}`;
+                const res = await fetch(apiUrl);
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(`Errore API: ${res.status} - ${text.substring(0, 200)}...`);
+                }
+                const data = await res.json();
+                oroscopo = data.horoscope || "The stars are a bit mysterious today...";
+                setCachedOroscopo(segno, oroscopo);
+            }
+            const fraseRandom = t.frasiDivertenti[Math.floor(Math.random() * t.frasiDivertenti.length)];
+            const interpretazione = t.risposteInterpretazione[Math.floor(Math.random() * t.risposteInterpretazione.length)];
+            rispostaDiv.innerHTML = `
+                <h3>${t.headers.yourQuestion}</h3>
+                <p>${t.domande[domandaKey]}</p>
+                <h3>${t.headers.todaysHoroscope}</h3>
+                <p>${oroscopo}</p>
+                <h3>${t.headers.interpretation}</h3>
+                <p>${interpretazione}</p>
+                <h3>${t.headers.funnyReply}</h3>
+                <p>${fraseRandom}</p>
+            `;
+        }
+    } catch (error) {
+        rispostaDiv.innerHTML = `
+            <h3>${t.headers.error}</h3>
+            <p>${t.headers.starsConfused}<br>(dettaglio: ${error.message})</p>
+        `;
+        console.error("Errore:", error);
+    } finally {
+        loading.style.display = "none";
+        // Ri-triggera Google Translate sul contenuto appena inserito
+        setTimeout(ritriggerTranslate, 400);
+    }
+}
 
 // Init
 document.addEventListener("DOMContentLoaded", () => {
-    cambiaLinguaManuale('it'); // Inizializza in italiano
+    cambiaLinguaManuale('it');
     aggiornaBottone();
 });
 
