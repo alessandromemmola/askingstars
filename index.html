@@ -72,6 +72,14 @@
 <h2 id="main-subtitle">🔮 Chiedi alle stelle o alla cartomante</h2>
 <p id="main-description">Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮</p>
 
+<p id="label-translate" style="font-size:14px; color:#555; margin-bottom:4px;">🌍 Seleziona lingua per tradurre</p>
+<div style="display:inline-block; margin-bottom:6px;">
+    <a href="javascript:void(0)"
+       onclick="ripristinaItaliano()"
+       style="font-size:14px; color:#555; text-decoration:underline; cursor:pointer;">
+        🇮🇹 Italiano (originale)
+    </a>
+</div>
 <div id="google_translate_element"></div>
 
 <form id="form">
@@ -134,6 +142,12 @@ function googleTranslateElementInit() {
 
 <script>
 
+function ripristinaItaliano() {
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname;
+    window.location.reload();
+}
+
 // ── LINGUA ATTIVA ──────────────────────────────────────────────
 let linguaAttiva = 'it';
 let isRetriggering = false;
@@ -159,6 +173,7 @@ const traduzioni = {
         footerText: 'AskingStars.com e i suoi contenuti © Alessandro Memmola 2026 – Tutti i diritti riservati.<br>Widget AskingStars: gratuito per embed su qualsiasi sito (personale o commerciale).<br><a href="/licenza" target="_blank">Leggi la licenza completa (sito + widget)</a> • <a href="/widget-demo.html">Prova il Widget Gratuito</a> • <a href="https://paypal.me/onlycreator">Dona ❤️</a><br>Questo sito non raccoglie dati personali identificativi né utilizza cookie di profilazione',
         footerLinks: '<a href="https://alessandromemmola.com">Sito personale</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
         shareMsg: 'Hai chiesto alle stelle oggi? Scopri il tuo oroscopo divertente: ',
+        labelTranslate: '🌍 Seleziona lingua per tradurre',
         nomiSegni: { aries:'Ariete ♈', taurus:'Toro ♉', gemini:'Gemelli ♊', cancer:'Cancro ♋', leo:'Leone ♌', virgo:'Vergine ♍', libra:'Bilancia ♎', scorpio:'Scorpione ♏', sagittarius:'Sagittario ♐', capricorn:'Capricorno ♑', aquarius:'Acquario ♒', pisces:'Pesci ♓' },
         oggi: 'Oggi 🌞', cartomante: 'Chiedi alla cartomante 🔮',
         domande: { getQuestioned:"Devo farmi interrogare?", luckInLove:"Avrò fortuna in amore oggi?", goodDayTravel:"È un buon giorno per viaggiare?", riskAtWork:"Dovrei rischiare al lavoro?", healthToday:"Come andrà la mia salute oggi?", financialSurprises:"Avrò sorprese finanziarie?", makePeaceFriend:"È il momento giusto per fare pace con un amico?", startHobby:"Dovrei iniziare un nuovo hobby?", energyToday:"Che energia avrò oggi?" },
@@ -237,7 +252,8 @@ const traduzioni = {
         footerText: 'AskingStars.com and its contents © Alessandro Memmola 2026 – All rights reserved.<br>AskingStars Widget: free to embed on any site (personal or commercial).<br><a href="/licenza" target="_blank">Read the full license (site + widget)</a> • <a href="/widget-demo.html">Try the Free Widget</a> • <a href="https://paypal.me/onlycreator">Donate ❤️</a><br>This site does not collect personally identifiable data or use profiling cookies',
         footerLinks: '<a href="https://alessandromemmola.com">Personal site</a> · <a href="https://github.com/alessandromemmola">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/">LinkedIn</a> · <a href="https://x.com/alexmemmola">X</a>',
         shareMsg: 'Did you ask the stars today? Check out your fun horoscope: ',
-        nomiSegni: { aries:'Aries ♈', taurus:'Taurus ♉', gemini:'Gemini ♊', cancer:'Cancer ♋', leo:'Leo ♌', virgo:'Virgo ♍', libra:'Libra ♎', scorpio:'Scorpio ♏', sagittarius:'Sagittarius ♐', capricorn:'Capricorn ♑', aquarius:'Aquarius ♒', pisces:'Pisces ♓' },
+        shareMsg: 'Did you ask the stars today? Check out your fun horoscope: ',
+        labelTranslate: '🌍 Select language to translate',
         oggi: 'Today 🌞', cartomante: 'Ask the fortune teller 🔮',
         domande: { getQuestioned:"Should I let myself be questioned?", luckInLove:"Will I have luck in love today?", goodDayTravel:"Is it a good day to travel?", riskAtWork:"Should I take a risk at work?", healthToday:"How will my health be today?", financialSurprises:"Will I have financial surprises?", makePeaceFriend:"Is it the right time to make peace with a friend?", startHobby:"Should I start a new hobby?", energyToday:"What energy will I have today?" },
         headers: { yourQuestion:"Your question", fortuneTellerSees:"The fortune teller sees", todaysHoroscope:"Today's horoscope", interpretation:"Interpretation for your question", funnyReply:"Funny reply", error:"Error 🌙", starsConfused:"The stars are a bit confused today… try again soon" },
@@ -313,6 +329,7 @@ const traduzioni = {
         footerText: "AskingStars.com et ses contenus © Alessandro Memmola 2026 – Tous droits réservés.<br>Widget AskingStars : gratuit pour embed sur n'importe quel site (personnel ou commercial).<br><a href='/licenza' target='_blank'>Lire la licence complète (site + widget)</a> • <a href='/widget-demo.html'>Essayez le Widget Gratuit</a> • <a href='https://paypal.me/onlycreator'>Donner ❤️</a><br>Ce site ne collecte pas de données personnelles identifiables et n'utilise pas de cookies de profilage",
         footerLinks: "<a href='https://alessandromemmola.com'>Site personnel</a> · <a href='https://github.com/alessandromemmola'>GitHub</a> · <a href='https://www.linkedin.com/in/alessandro-memmola-233868372/'>LinkedIn</a> · <a href='https://x.com/alexmemmola'>X</a>",
         shareMsg: "Avez-vous demandé aux étoiles aujourd'hui ? Découvrez votre horoscope amusant : ",
+        labelTranslate: '🌍 Sélectionnez la langue pour traduire',
         nomiSegni: { aries:'Bélier ♈', taurus:'Taureau ♉', gemini:'Gémeaux ♊', cancer:'Cancer ♋', leo:'Lion ♌', virgo:'Vierge ♍', libra:'Balance ♎', scorpio:'Scorpion ♏', sagittarius:'Sagittaire ♐', capricorn:'Capricorne ♑', aquarius:'Verseau ♒', pisces:'Poissons ♓' },
         oggi: "Aujourd'hui 🌞", cartomante: 'Demandez à la voyante 🔮',
         domande: { getQuestioned:"Dois-je me laisser interroger ?", luckInLove:"Aurai-je de la chance en amour aujourd'hui ?", goodDayTravel:"Est-ce un bon jour pour voyager ?", riskAtWork:"Devrais-je prendre un risque au travail ?", healthToday:"Comment sera ma santé aujourd'hui ?", financialSurprises:"Aurai-je des surprises financières ?", makePeaceFriend:"Est-ce le bon moment pour faire la paix avec un ami ?", startHobby:"Devrais-je commencer un nouveau hobby ?", energyToday:"Quelle énergie aurai-je aujourd'hui ?" },
@@ -381,7 +398,8 @@ const traduzioni = {
         bannerText: 'GitHub Sponsors pendiente aprobación – ¡apóyame mientras tanto en PayPal.me! 🌟',
         bannerBtn: 'Donar ahora ❤️',
         footerText: "AskingStars.com y sus contenidos © Alessandro Memmola 2026 – Todos los derechos reservados.<br>Widget AskingStars: gratuito para embed en cualquier sitio (personal o comercial).<br><a href='/licenza' target='_blank'>Leer la licencia completa (sitio + widget)</a> • <a href='/widget-demo.html'>Prueba el Widget Gratuito</a> • <a href='https://paypal.me/onlycreator'>Donar ❤️</a><br>Este sitio no recopila datos personales identificables ni utiliza cookies de perfilado",
-        footerLinks: "<a href='https://alessandromemmola.com'>Sitio personal</a> · <a href='https://github.com/alessandromemmola'>GitHub</a> · <a href='https://www.linkedin.com/in/alessandro-memmola-233868372/'>LinkedIn</a> · <a href='https://x.com/alexmemmola'>X</a>",
+        shareMsg: '¿Preguntaste a las estrellas hoy? Descubre tu horóscopo divertido: ',
+        labelTranslate: '🌍 Selecciona idioma para traducir',
         shareMsg: '¿Preguntaste a las estrellas hoy? Descubre tu horóscopo divertido: ',
         nomiSegni: { aries:'Aries ♈', taurus:'Tauro ♉', gemini:'Géminis ♊', cancer:'Cáncer ♋', leo:'Leo ♌', virgo:'Virgo ♍', libra:'Libra ♎', scorpio:'Escorpio ♏', sagittarius:'Sagitario ♐', capricorn:'Capricornio ♑', aquarius:'Acuario ♒', pisces:'Piscis ♓' },
         oggi: 'Hoy 🌞', cartomante: 'Pregunta a la adivina 🔮',
@@ -450,7 +468,8 @@ const traduzioni = {
         shareTitle: 'Mit deinen Freunden teilen',
         bannerText: 'GitHub Sponsors wartet auf Genehmigung – unterstütze mich inzwischen auf PayPal.me! 🌟',
         bannerBtn: 'Jetzt spenden ❤️',
-        footerText: "AskingStars.com und seine Inhalte © Alessandro Memmola 2026 – Alle Rechte vorbehalten.<br>AskingStars Widget: kostenlos für Einbettung auf jeder Website (privat oder kommerziell).<br><a href='/licenza' target='_blank'>Vollständige Lizenz lesen (Website + Widget)</a> • <a href='/widget-demo.html'>Kostenloses Widget ausprobieren</a> • <a href='https://paypal.me/onlycreator'>Spenden ❤️</a><br>Diese Website sammelt keine persönlich identifizierbaren Daten und verwendet keine Profiling-Cookies",
+        shareMsg: 'Hast du heute die Sterne gefragt? Entdecke dein lustiges Horoskop: ',
+        labelTranslate: '🌍 Sprache zum Übersetzen auswählen',
         footerLinks: "<a href='https://alessandromemmola.com'>Persönliche Website</a> · <a href='https://github.com/alessandromemmola'>GitHub</a> · <a href='https://www.linkedin.com/in/alessandro-memmola-233868372/'>LinkedIn</a> · <a href='https://x.com/alexmemmola'>X</a>",
         shareMsg: 'Hast du heute die Sterne gefragt? Entdecke dein lustiges Horoskop: ',
         nomiSegni: { aries:'Widder ♈', taurus:'Stier ♉', gemini:'Zwillinge ♊', cancer:'Krebs ♋', leo:'Löwe ♌', virgo:'Jungfrau ♍', libra:'Waage ♎', scorpio:'Skorpion ♏', sagittarius:'Schütze ♐', capricorn:'Steinbock ♑', aquarius:'Wassermann ♒', pisces:'Fische ♓' },
@@ -519,7 +538,8 @@ const traduzioni = {
         donaButton: 'Doar com PayPal',
         shareTitle: 'Compartilhe com seus amigos',
         bannerText: 'GitHub Sponsors aguardando aprovação – apoie-me enquanto isso no PayPal.me! 🌟',
-        bannerBtn: 'Doe agora ❤️',
+        shareMsg: 'Você perguntou às estrelas hoje? Descubra seu horóscopo divertido: ',
+        labelTranslate: '🌍 Selecione o idioma para traduzir',
         footerText: "AskingStars.com e seus conteúdos © Alessandro Memmola 2026 – Todos os direitos reservados.<br>Widget AskingStars: gratuito para incorporar em qualquer site (pessoal ou comercial).<br><a href='/licenza' target='_blank'>Leia a licença completa (site + widget)</a> • <a href='/widget-demo.html'>Experimente o Widget Gratuito</a> • <a href='https://paypal.me/onlycreator'>Doe ❤️</a><br>Este site não coleta dados pessoais identificáveis nem usa cookies de perfil",
         footerLinks: "<a href='https://alessandromemmola.com'>Site pessoal</a> · <a href='https://github.com/alessandromemmola'>GitHub</a> · <a href='https://www.linkedin.com/in/alessandro-memmola-233868372/'>LinkedIn</a> · <a href='https://x.com/alexmemmola'>X</a>",
         shareMsg: 'Você perguntou às estrelas hoje? Descubra seu horóscopo divertido: ',
@@ -580,13 +600,27 @@ const traduzioni = {
 function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function getLinguaCorrente() { return linguaAttiva; }
 
-function getCachedOroscopo(segno) {
-    const key = `oroscopo_${segno}_${new Date().toDateString()}`;
+function getCachedOroscopo(segno, lingua) {
+    const key = `oroscopo_${segno}_${lingua}_${new Date().toDateString()}`;
     return localStorage.getItem(key) || null;
 }
-function setCachedOroscopo(segno, testo) {
-    const key = `oroscopo_${segno}_${new Date().toDateString()}`;
+function setCachedOroscopo(segno, lingua, testo) {
+    const key = `oroscopo_${segno}_${lingua}_${new Date().toDateString()}`;
     localStorage.setItem(key, testo);
+}
+
+async function traduciOroscopoClient(testo, lingua) {
+    if (lingua === 'en') return testo;
+    try {
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${lingua}&dt=t&q=${encodeURIComponent(testo)}`;
+        const res = await fetch(url);
+        if (!res.ok) return testo;
+        const data = await res.json();
+        return data[0].map(chunk => chunk[0]).filter(Boolean).join('');
+    } catch(e) {
+        console.warn('Traduzione client fallita, uso inglese', e);
+        return testo;
+    }
 }
 
 // ── AGGIORNA UI STATICA ────────────────────────────────────────
@@ -602,6 +636,7 @@ function aggiornaUI(lingua) {
     document.getElementById('support-description').textContent = t.supportDescription;
     document.getElementById('dona-button').textContent       = t.donaButton;
     document.getElementById('share-title').textContent       = t.shareTitle;
+    document.getElementById('label-translate').textContent   = t.labelTranslate;
     document.getElementById('banner-text').textContent       = t.bannerText;
     document.getElementById('banner-btn').textContent        = t.bannerBtn;
     document.getElementById('footer-text').innerHTML         = t.footerText;
@@ -719,7 +754,7 @@ async function getOroscopo() {
                 <p>${rnd(t.cartomanteRisposte)}</p>
             `;
         } else {
-            let oroscopo = getCachedOroscopo(segno);
+            let oroscopo = getCachedOroscopo(segno, lingua);
             if (!oroscopo) {
                 const res = await fetch(`https://askingstars.vercel.app/api/ninjas-horoscope?zodiac=${segno}`);
                 if (!res.ok) {
@@ -727,8 +762,9 @@ async function getOroscopo() {
                     throw new Error(`API ${res.status}: ${txt.substring(0, 200)}`);
                 }
                 const data = await res.json();
-                oroscopo = data.horoscope || 'The stars are a bit mysterious today...';
-                setCachedOroscopo(segno, oroscopo);
+                const testoEn = data.horoscope || 'The stars are a bit mysterious today...';
+                oroscopo = await traduciOroscopoClient(testoEn, lingua);
+                setCachedOroscopo(segno, lingua, oroscopo);
             }
             rispostaDiv.innerHTML = `
                 <h3>${t.headers.yourQuestion}</h3>
@@ -749,22 +785,6 @@ async function getOroscopo() {
         console.error('Errore:', error);
     } finally {
         loading.style.display = 'none';
-        // Ri-trigger Google Translate per tradurre l'oroscopo (inglese → lingua selezionata)
-        setTimeout(() => {
-            if (isRetriggering) return;
-            const gtSel = document.querySelector('.goog-te-combo');
-            if (gtSel && gtSel.value && gtSel.value !== 'it') {
-                const cur = gtSel.value;
-                isRetriggering = true;
-                gtSel.value = 'it';
-                gtSel.dispatchEvent(new Event('change'));
-                setTimeout(() => {
-                    gtSel.value = cur;
-                    gtSel.dispatchEvent(new Event('change'));
-                    setTimeout(() => { isRetriggering = false; }, 400);
-                }, 600);
-            }
-        }, 400);
     }
 }
 
