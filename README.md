@@ -6,8 +6,9 @@ Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risp
 
 ## Link utili
 - Sito live: https://askingstars.com
-- Repository: https://github.com/alessandromemmola/askingstars
-- Supportami: https://github.com/sponsors/alessandromemmola
+- Widget embeddabile gratuito: https://askingstars.com/widget-demo.html
+
+Tech: HTML · CSS · JavaScript · Vercel
 
 ## Licenza  
     <a href="https://askingstars.com/licenza" target="_blank">Leggi la licenza completa</a>
