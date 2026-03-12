@@ -1,4 +1,5 @@
-# AskingStars
+# AskingStars 🌟
+
 
 Oroscopo Q&A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮
 
