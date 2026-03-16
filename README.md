@@ -4,7 +4,7 @@
 
 > Ask your zodiac sign anything. Get a daily horoscope, a cosmic interpretation, and a funny reply. Or consult the fortune teller for a mystical prediction.
 
-**Created by Alessandro Memmola © 2026**
+**Created by Memmola Labs - Alessandro Memmola © 2026**
 
 ---
 
