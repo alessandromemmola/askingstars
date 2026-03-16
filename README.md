@@ -12,7 +12,7 @@
 
 - 🌐 Live site: [askingstars.com](https://askingstars.com)
 - 🧩 Free embeddable widget: [askingstars.com/widget-demo.html](https://askingstars.com/widget-demo.html)
-- 🚀 Product Hunt: *(coming soon)*
+- 🚀 Product Hunt: www.producthunt.com/@alessandromemmola
 
 ---
 
