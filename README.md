@@ -1,4 +1,4 @@
-AskingStars 🌟
+# AskingStars 🌟
 Interactive and fun Horoscope Q&A: ask the stars or the fortune teller for personalized, ironic answers — no filters. 🌟🔮
 
 Ask your zodiac sign anything. Get a daily horoscope, a cosmic interpretation, and a funny reply. Or consult the fortune teller for a mystical prediction.
