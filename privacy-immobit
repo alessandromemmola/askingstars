@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImmoBit — Privacy Policy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0F0E0C; color: #E8E0D0; line-height: 1.7; }
+        .container { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
+        .header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid #2A2520; }
+        .logo { font-size: 32px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+        .logo span { color: #C9A84C; }
+        .tagline { color: #8A7D6A; font-size: 14px; }
+        .badge { display: inline-block; background: #1E1A14; border: 1px solid #2A2520; border-radius: 20px; padding: 6px 16px; font-size: 12px; color: #8A7D6A; margin-top: 12px; }
+        h1 { font-size: 28px; font-weight: 700; color: #C9A84C; margin-bottom: 8px; }
+        h2 { font-size: 18px; font-weight: 600; color: #C9A84C; margin: 32px 0 12px; }
+        p { color: #B8A898; margin-bottom: 16px; }
+        ul { color: #B8A898; padding-left: 20px; margin-bottom: 16px; }
+        ul li { margin-bottom: 8px; }
+        .section { background: #1A1610; border: 1px solid #2A2520; border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+        .highlight { color: #C9A84C; font-weight: 500; }
+        .footer { text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid #2A2520; color: #8A7D6A; font-size: 13px; }
+        .lang-switch { text-align: right; margin-bottom: 24px; }
+        .lang-switch a { color: #C9A84C; text-decoration: none; font-size: 13px; border: 1px solid #C9A84C; padding: 4px 12px; border-radius: 20px; }
+        #en { display: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch">
+        <a href="#" onclick="toggleLang()">🇬🇧 English</a>
+    </div>
+
+    <div class="header">
+        <div class="logo">Immo<span>Bit</span></div>
+        <div class="tagline">Valutazione immobiliare intelligente</div>
+        <div class="badge">by Memmola Lab</div>
+    </div>
+
+    <!-- ITALIANO -->
+    <div id="it">
+        <h1>Privacy Policy</h1>
+        <p>Ultimo aggiornamento: marzo 2026</p>
+
+        <div class="section">
+            <h2>1. Nessuna raccolta di dati</h2>
+            <p>ImmoBit <span class="highlight">non raccoglie, non trasmette e non condivide alcun dato personale</span> degli utenti. L'app funziona completamente offline e non richiede registrazione o accesso.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Dati salvati sul dispositivo</h2>
+            <p>Tutti i dati inseriti nell'app (valutazioni immobiliari, foto, promemoria) vengono salvati <span class="highlight">esclusivamente sul dispositivo dell'utente</span>, nella memoria locale dell'app. Questi dati:</p>
+            <ul>
+                <li>Non vengono mai trasmessi a server esterni</li>
+                <li>Non sono accessibili a terze parti</li>
+                <li>Vengono eliminati quando l'app viene disinstallata</li>
+                <li>Possono essere eliminati dall'utente in qualsiasi momento</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. Permessi richiesti</h2>
+            <p>ImmoBit richiede i seguenti permessi sul dispositivo:</p>
+            <ul>
+                <li><span class="highlight">Fotocamera</span> — per scattare foto agli immobili valutati</li>
+                <li><span class="highlight">Archiviazione</span> — per salvare foto e report PDF sul dispositivo</li>
+                <li><span class="highlight">Notifiche</span> — per inviare promemoria impostati dall'utente</li>
+            </ul>
+            <p>Nessuno di questi permessi viene utilizzato per raccogliere dati personali.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Acquisti in-app</h2>
+            <p>ImmoBit offre acquisti in-app (versione Pro) gestiti interamente da <span class="highlight">Google Play</span>. Memmola Lab non gestisce né archivia dati di pagamento. Per informazioni sul trattamento dei dati di pagamento, consulta la Privacy Policy di Google Play.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Cookie e tracciamento</h2>
+            <p>ImmoBit <span class="highlight">non utilizza cookie, tracker, SDK di analisi o strumenti di profilazione</span> di alcun tipo.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. Minori</h2>
+            <p>ImmoBit è destinata a utenti di età pari o superiore a 18 anni. Non raccogliamo consapevolmente dati di minori.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Contatti</h2>
+            <p>Per qualsiasi domanda relativa alla privacy, contattaci:</p>
+            <ul>
+                <li>Sito web: <span class="highlight">alessandromemmola.com</span></li>
+                <li>Sviluppatore: Alessandro Memmola — Memmola Lab</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ENGLISH -->
+    <div id="en">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: March 2026</p>
+
+        <div class="section">
+            <h2>1. No Data Collection</h2>
+            <p>ImmoBit <span class="highlight">does not collect, transmit or share any personal data</span> from users. The app works completely offline and does not require registration or login.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Data Stored on Device</h2>
+            <p>All data entered in the app (property evaluations, photos, reminders) is saved <span class="highlight">exclusively on the user's device</span>, in the app's local storage. This data:</p>
+            <ul>
+                <li>Is never transmitted to external servers</li>
+                <li>Is not accessible to third parties</li>
+                <li>Is deleted when the app is uninstalled</li>
+                <li>Can be deleted by the user at any time</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. Permissions Required</h2>
+            <p>ImmoBit requires the following device permissions:</p>
+            <ul>
+                <li><span class="highlight">Camera</span> — to take photos of evaluated properties</li>
+                <li><span class="highlight">Storage</span> — to save photos and PDF reports on the device</li>
+                <li><span class="highlight">Notifications</span> — to send reminders set by the user</li>
+            </ul>
+            <p>None of these permissions are used to collect personal data.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. In-App Purchases</h2>
+            <p>ImmoBit offers in-app purchases (Pro version) managed entirely by <span class="highlight">Google Play</span>. Memmola Lab does not handle or store payment data. For information on payment data processing, please refer to Google Play's Privacy Policy.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Cookies and Tracking</h2>
+            <p>ImmoBit <span class="highlight">does not use cookies, trackers, analytics SDKs or profiling tools</span> of any kind.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. Minors</h2>
+            <p>ImmoBit is intended for users aged 18 and over. We do not knowingly collect data from minors.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Contact</h2>
+            <p>For any privacy-related questions, contact us:</p>
+            <ul>
+                <li>Website: <span class="highlight">alessandromemmola.com</span></li>
+                <li>Developer: Alessandro Memmola — Memmola Lab</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© Memmola Lab 2026 — Tutti i diritti riservati / All rights reserved</p>
+    </div>
+</div>
+
+<script>
+    function toggleLang() {
+        const it = document.getElementById('it');
+        const en = document.getElementById('en');
+        const btn = document.querySelector('.lang-switch a');
+        if (en.style.display === 'none' || !en.style.display) {
+            en.style.display = 'block';
+            it.style.display = 'none';
+            btn.textContent = '🇮🇹 Italiano';
+        } else {
+            it.style.display = 'block';
+            en.style.display = 'none';
+            btn.textContent = '🇬🇧 English';
+        }
+    }
+</script>
+</body>
+</html>
