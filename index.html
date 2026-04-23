@@ -39,138 +39,455 @@
     <meta name="twitter:creator" content="@alexmemmola">
 
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f7f7f7; color: #222; text-align: center; padding: 20px; margin: 0; }
-        h1, h2, h3 { color: #ff4c81; }
-        h2 { margin-top: 2.5em; }
-        form { max-width: 420px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        label { display: block; margin: 12px 0 6px; font-weight: bold; color: #444; }
-        select, button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 17px; box-sizing: border-box; }
-        button { background: #ff69b4; color: white; cursor: pointer; border: none; font-weight: bold; transition: 0.3s; }
-        button:hover { background: #ff1493; }
-        button.cartomante { background: #800080; }
-        button.cartomante:hover { background: #660066; }
-        #risposta { margin-top: 30px; font-size: 19px; line-height: 1.5; font-style: italic; color: #4b0082; min-height: 140px; padding: 0 10px; }
-        #loading { display: none; margin: 30px 0; font-weight: bold; font-size: 18px; color: #ff69b4; text-align: center; }
-        .spinner { width: 40px; height: 40px; border: 5px solid #f3f3f3; border-top: 5px solid #ff69b4; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .support-section { padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; margin: 40px auto; }
-        .share-links { margin: 20px 0; font-size: 1.1em; }
-        .share-links a { margin: 0 16px; color: #ff69b4; text-decoration: none; font-weight: 500; }
-        .share-links a:hover { color: #ff1493; }
-        .apps-section { max-width: 720px; margin: 26px auto 10px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0eaf8;
+            color: #222;
+            margin: 0;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: #1a0035;
+            padding: 36px 20px 44px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-star { position: absolute; border-radius: 50%; background: #fff; }
+
+        .hero-logo {
+            width: 76px; height: 76px;
+            border-radius: 50%;
+            background: #ff4c81;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 30px;
+            position: relative; z-index: 1;
+        }
+
+        #main-title {
+            color: #ff4c81 !important;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative; z-index: 1;
+        }
+
+        #main-subtitle {
+            color: #ff69b4 !important;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0 0 6px !important;
+            position: relative; z-index: 1;
+        }
+
+        #main-description {
+            color: #ffb3cc;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            position: relative; z-index: 1;
+        }
+
+        .translate-wrapper {
+            position: relative; z-index: 1;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #label-translate {
+            color: #ffb3cc !important;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .translate-inner {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2d0050;
+            border: 0.5px solid #ff4c81;
+            border-radius: 20px;
+            padding: 6px 14px;
+        }
+
+        #google_translate_element { display: inline; }
+
+        #it-restore {
+            color: #884499 !important;
+            font-size: 11px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .zodiac-strip {
+            position: relative; z-index: 1;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .zodiac-strip span {
+            color: #ff69b4;
+            font-size: 15px;
+            opacity: 0.6;
+        }
+
+        /* ── MAIN CONTENT ── */
+        .main-content {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        /* ── FORM CARD ── */
+        .form-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            border: 0.5px solid #f0d0e8;
+        }
+
+        label {
+            display: block;
+            margin: 0 0 5px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #c2185b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 0 0 16px;
+            border: 0.5px solid #f0d0e8;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #4b0082;
+            background: #fdf5ff;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        select:focus { border-color: #ff69b4; }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 24px;
+            background: #ff4c81;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            letter-spacing: 0.3px;
+        }
+
+        button:hover { background: #e0356a; }
+        button:active { transform: scale(0.98); }
+        button.cartomante { background: #6a0080; }
+        button.cartomante:hover { background: #4a005c; }
+
+        /* ── LOADING ── */
+        #loading {
+            display: none;
+            text-align: center;
+            padding: 30px 0;
+            color: #ff69b4;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .spinner {
+            width: 38px; height: 38px;
+            border: 4px solid #f0d0e8;
+            border-top: 4px solid #ff4c81;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 14px auto 0;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── RISULTATI ── */
+        #risposta {
+            min-height: 60px;
+        }
+
+        #risposta h3 {
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            color: #c2185b !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 6px !important;
+        }
+
+        #risposta p {
+            background: #fdf0f8;
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            font-size: 14px;
+            font-style: italic;
+            color: #4b0082;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* ── SUPPORT ── */
+        .support-section {
+            background: #1a0035;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 0 0 24px;
+            text-align: center;
+            border: 0.5px solid #3d0060;
+        }
+
+        .support-section h2 {
+            color: #ff4c81 !important;
+            font-size: 1.1rem !important;
+            margin: 0 0 8px !important;
+        }
+
+        .support-section p {
+            color: #ffb3cc;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .btn-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* ── SHARE ── */
+        .share-section {
+            text-align: center;
+            margin: 0 0 24px;
+        }
+
+        .share-section h3 {
+            color: #c2185b !important;
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            margin-bottom: 10px !important;
+        }
+
+        .share-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .share-links a { color: #ff4c81; text-decoration: none; font-weight: 500; font-size: 14px; }
+        .share-links a:hover { color: #c2185b; }
+        .apps-section {
+            margin: 0 0 24px;
+            text-align: left;
+        }
         .apps-title {
             color: #c2185b;
             font-size: 12px;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
+            text-align: center;
             font-weight: 700;
         }
-        .apps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .apps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .app-card {
             background: #fff;
-            border: 1px solid #f0d0e8;
-            border-radius: 12px;
+            border: 0.5px solid #f0d0e8;
+            border-radius: 14px;
             padding: 12px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        .app-feature-link { display: block; border-radius: 10px; overflow: hidden; border: 1px solid #f0d0e8; }
+        .app-feature-link {
+            display: block;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 0.5px solid #f0d0e8;
+        }
         .app-feature-link img { display: block; width: 100%; height: auto; }
         .play-badge-link { display: inline-flex; width: fit-content; }
         .play-badge-link img { display: block; width: 168px; max-width: 100%; height: auto; }
-        footer { margin-top: 50px; font-size: 0.9em; color: #666; }
-        #google_translate_element { margin-bottom: 20px; }
-        @media (max-width: 560px) {
+
+        /* ── FOOTER ── */
+        footer {
+            background: #1a0035;
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        .zodiac-footer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .zodiac-footer span { color: #ff69b4; font-size: 15px; opacity: 0.6; }
+
+        #footer-text {
+            color: #884499;
+            font-size: 11px;
+            line-height: 2.2;
+        }
+
+        #footer-text a { color: #ff69b4; text-decoration: none; }
+        #footer-text a:hover { text-decoration: underline; }
+
+        #footer-links {
+            margin-top: 8px;
+            color: #884499;
+            font-size: 11px;
+            line-height: 2;
+        }
+
+        #footer-links a { color: #ff69b4; text-decoration: none; }
+        #footer-links a:hover { text-decoration: underline; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 480px) {
+            #main-title { font-size: 1.3rem; }
+            .form-card { padding: 18px; }
             .apps-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<h1 id="main-title">🌟 AskingStars – Oroscopo Q&amp;A Divertente e Ironico 🌟</h1>
-<h2 id="main-subtitle">🔮 Chiedi alle stelle o alla cartomante</h2>
-<p id="main-description">Oroscopo Q&amp;A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮</p>
+<!-- HERO -->
+<div class="hero">
+    <!-- stelle decorative -->
+    <div class="hero-star" style="width:2px;height:2px;top:10%;left:7%;opacity:0.8"></div>
+    <div class="hero-star" style="width:1px;height:1px;top:18%;left:22%;opacity:0.5"></div>
+    <div class="hero-star" style="width:2px;height:2px;top:7%;left:48%;opacity:0.9"></div>
+    <div class="hero-star" style="width:1px;height:1px;top:25%;left:68%;opacity:0.6"></div>
+    <div class="hero-star" style="width:2px;height:2px;top:12%;left:87%;opacity:0.8"></div>
+    <div class="hero-star" style="width:1px;height:1px;top:40%;left:4%;opacity:0.5"></div>
+    <div class="hero-star" style="width:2px;height:2px;top:48%;left:94%;opacity:0.7"></div>
+    <div class="hero-star" style="width:1px;height:1px;top:60%;left:14%;opacity:0.4"></div>
+    <div class="hero-star" style="width:2px;height:2px;top:65%;left:82%;opacity:0.6"></div>
+    <div class="hero-star" style="width:1px;height:1px;top:78%;left:55%;opacity:0.5"></div>
+    <div class="hero-star" style="width:2px;height:2px;top:85%;left:30%;opacity:0.7"></div>
+    <div class="hero-star" style="width:1px;height:1px;top:90%;left:72%;opacity:0.4"></div>
 
-<p id="label-translate" style="font-size:14px; color:#555; margin-bottom:4px;">🌍 Seleziona lingua per tradurre</p>
-<div style="display:inline-block; margin-bottom:6px;">
-    <a href="javascript:void(0)"
-       onclick="ripristinaItaliano()"
-       style="font-size:14px; color:#555; text-decoration:underline; cursor:pointer;">
-        🇮🇹 Italiano (originale)
-    </a>
-</div>
-<div id="google_translate_element"></div>
+    <div class="hero-logo">✦</div>
 
-<form id="form">
-    <label for="segno" id="label-segno">Il tuo segno zodiacale:</label>
-    <select id="segno"></select>
+    <h1 id="main-title">🌟 AskingStars – Oroscopo Q&amp;A Divertente e Ironico 🌟</h1>
+    <h2 id="main-subtitle">🔮 Chiedi alle stelle o alla cartomante</h2>
+    <p id="main-description">Oroscopo Q&amp;A interattivo e divertente: chiedi alle stelle o alla cartomante risposte personalizzate, ironiche e senza filtri. 🌟🔮</p>
 
-    <label for="giorno" id="label-giorno">Quando vuoi sapere:</label>
-    <select id="giorno" onchange="aggiornaBottone()"></select>
+    <div class="translate-wrapper">
+        <p id="label-translate">🌍 Seleziona lingua per tradurre</p>
+        <div class="translate-inner">
+            <div id="google_translate_element"></div>
+        </div>
+        <a id="it-restore" href="javascript:void(0)" onclick="ripristinaItaliano()">🇮🇹 Italiano (originale)</a>
+    </div>
 
-    <label for="domanda" id="label-domanda">Scegli una domanda:</label>
-    <select id="domanda"></select>
-
-    <button type="button" id="btn" onclick="getOroscopo()">Chiedi alle stelle 🌟</button>
-</form>
-
-<div id="loading">Sto consultando le stelle... <div class="spinner"></div></div>
-<div id="risposta"></div>
-
-<div class="support-section">
-    <h2 id="support-title">Supporta AskingStars 🌟</h2>
-    <p id="support-description">Se AskingStars ti diverte o ti è utile, aiutami a mantenerlo gratuito e a svilupparlo full-time!</p>
-    <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-top:16px; flex-wrap:wrap;">
-        <iframe src="https://github.com/sponsors/alessandromemmola/button"
-                title="Sponsor alessandromemmola"
-                height="32" width="114"
-                style="border:0; border-radius:6px;">
-        </iframe>
-        <form action="https://www.paypal.com/donate" method="post" target="_top" style="margin:0;">
-            <input type="hidden" name="hosted_button_id" value="BDKSZVWFYY5ZL" />
-            <input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Fai una donazione con il pulsante PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/it_IT/i/scr/pixel.gif" width="1" height="1" />
-        </form>
+    <div class="zodiac-strip">
+        <span>♈</span><span>♉</span><span>♊</span><span>♋</span><span>♌</span>
+        <span>♍</span><span>♎</span><span>♏</span><span>♐</span><span>♑</span><span>♒</span><span>♓</span>
     </div>
 </div>
 
-<div class="share-links">
-    <h3 id="share-title">Condividi con i tuoi amici</h3>
-    <a href="#" onclick="shareOnX()">X</a>
-    <a href="#" onclick="shareOnWhatsApp()">WhatsApp</a>
-    <a href="#" onclick="shareOnTelegram()">Telegram</a>
-    <a href="#" onclick="shareOnFacebook()">Facebook</a>
+<!-- CONTENUTO PRINCIPALE -->
+<div class="main-content">
+
+    <div class="form-card">
+        <label for="segno" id="label-segno">Il tuo segno zodiacale</label>
+        <select id="segno"></select>
+
+        <label for="giorno" id="label-giorno">Quando vuoi sapere</label>
+        <select id="giorno" onchange="aggiornaBottone()"></select>
+
+        <label for="domanda" id="label-domanda">Scegli una domanda</label>
+        <select id="domanda"></select>
+
+        <button type="button" id="btn" onclick="getOroscopo()">Chiedi alle stelle 🌟</button>
+    </div>
+
+    <div id="loading">Sto consultando le stelle... <div class="spinner"></div></div>
+    <div id="risposta"></div>
+
+    <div class="share-section">
+        <h3 id="share-title">Condividi con i tuoi amici</h3>
+        <div class="share-links">
+            <a href="#" onclick="shareOnX()">X</a>
+            <a href="#" onclick="shareOnWhatsApp()">WhatsApp</a>
+            <a href="#" onclick="shareOnTelegram()">Telegram</a>
+            <a href="#" onclick="shareOnFacebook()">Facebook</a>
+        </div>
+    </div>
+
+    <div class="support-section">
+        <h2 id="support-title">Supporta AskingStars 🌟</h2>
+        <p id="support-description">Se AskingStars ti diverte o ti è utile, aiutami a mantenerlo gratuito e a svilupparlo full-time!</p>
+        <div class="btn-row">
+            <iframe src="https://github.com/sponsors/alessandromemmola/button"
+                    title="Sponsor alessandromemmola"
+                    height="32" width="114"
+                    style="border:0; border-radius:6px;">
+            </iframe>
+            <form action="https://www.paypal.com/donate" method="post" target="_top" style="margin:0;">
+                <input type="hidden" name="hosted_button_id" value="BDKSZVWFYY5ZL" />
+                <input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Fai una donazione con il pulsante PayPal" />
+                <img alt="" border="0" src="https://www.paypal.com/it_IT/i/scr/pixel.gif" width="1" height="1" />
+            </form>
+        </div>
+    </div>
+
+    <section class="apps-section" aria-label="Memmola Labs apps on Google Play">
+        <p class="apps-title">Discover new app by Memmola Labs</p>
+        <div class="apps-grid">
+            <article class="app-card">
+                <a class="app-feature-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" rel="noopener noreferrer" aria-label="Open AutoBit on Google Play">
+                    <img src="images/autobit_feature_graphic.png" alt="AutoBit app preview graphic" loading="lazy">
+                </a>
+                <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" rel="noopener noreferrer" aria-label="Get AutoBit on Google Play">
+                    <img src="images/GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play" loading="lazy">
+                </a>
+            </article>
+            <article class="app-card">
+                <a class="app-feature-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" rel="noopener noreferrer" aria-label="Open ImmoBit on Google Play">
+                    <img src="images/immobit_feature_graphic.png" alt="ImmoBit app preview graphic" loading="lazy">
+                </a>
+                <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" rel="noopener noreferrer" aria-label="Get ImmoBit on Google Play">
+                    <img src="images/GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play" loading="lazy">
+                </a>
+            </article>
+        </div>
+    </section>
+
 </div>
 
-<section class="apps-section" aria-label="Memmola Labs apps on Google Play">
-    <p class="apps-title">Discover new app by Memmola Labs</p>
-    <div class="apps-grid">
-        <article class="app-card">
-            <a class="app-feature-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" rel="noopener noreferrer" aria-label="Open AutoBit on Google Play">
-                <img src="images/autobit_feature_graphic.png" alt="AutoBit app preview graphic" loading="lazy">
-            </a>
-            <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" rel="noopener noreferrer" aria-label="Get AutoBit on Google Play">
-                <img src="images/GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play" loading="lazy">
-            </a>
-        </article>
-        <article class="app-card">
-            <a class="app-feature-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" rel="noopener noreferrer" aria-label="Open ImmoBit on Google Play">
-                <img src="images/immobit_feature_graphic.png" alt="ImmoBit app preview graphic" loading="lazy">
-            </a>
-            <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" rel="noopener noreferrer" aria-label="Get ImmoBit on Google Play">
-                <img src="images/GetItOnGooglePlay_Badge_Web_color_Italian.png" alt="Disponibile su Google Play" loading="lazy">
-            </a>
-        </article>
-    </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
+    <div class="zodiac-footer">
+        <span>♈</span><span>♉</span><span>♊</span><span>♋</span><span>♌</span>
+        <span>♍</span><span>♎</span><span>♏</span><span>♐</span><span>♑</span><span>♒</span><span>♓</span>
+    </div>
     <p id="footer-text">AskingStars.com e i suoi contenuti © Alessandro Memmola 2026 – Tutti i diritti riservati.<br>
     Widget AskingStars: gratuito per embed su qualsiasi sito (personale o commerciale).<br>
-    <a href="/licenza" target="_blank">Leggi la licenza completa (sito + widget)</a> •
-    <a href="/widget-demo.html">Prova il Widget Gratuito</a><br>
+    🧩 <a href="/widget-demo.html" style="color:#ff4c81; font-weight:bold;">Prova il Widget Gratuito</a> •
+    <a href="/licenza" target="_blank">Leggi la licenza completa (sito + widget)</a><br>
     Questo sito non raccoglie dati personali identificativi né utilizza cookie di profilazione</p>
     <p id="footer-links">
         <a href="https://alessandromemmola.com">Sito personale</a> ·
@@ -898,3 +1215,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
